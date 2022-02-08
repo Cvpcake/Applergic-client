@@ -6,6 +6,7 @@ import Intro from "./pages/Intro/Intro.jsx";
 import Register from "./pages/Register/Register.jsx";
 import Login from "./pages/Login/Login";
 import { JwtContext } from "./shared/contexts/JwtContext";
+import LogoIntro from "./pages/LogoIntro/LogoIntro.jsx";
 
 function App() {
   
@@ -21,6 +22,8 @@ function App() {
           <Route path="/" element={<Intro />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
+          <Route path="/" element={<LogoIntro />} />
+          <Route path="/Intro" element={<Intro />} />
         </Routes>
       </BrowserRouter>
     </div>
