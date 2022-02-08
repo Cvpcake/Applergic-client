@@ -1,0 +1,81 @@
+.LogImgTitle{
+display:flex;
+background-image: url("../../../public/images/platosLog.png");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+flex-direction: column;
+justify-content: flex-end;
+width: 100%;
+height: 32vh;
+border-bottom-right-radius: 25% 45%;
+
+    &__LogApp{
+    position:absolute;
+    width:22%;
+    margin-left: 5%;
+    margin-bottom: 3%;
+}
+
+}
+
+.Context-div{
+    width: 100%;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    
+    &__text{
+        height:8vh;
+        width:50%;
+        margin-left:7%;
+    }
+}
+
+.ContainerForm{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+    height:53vh;
+    width:100%;
+
+    &__FormLog{
+        display:flex;
+        justify-content:space-around;
+        align-items: center;
+        flex-direction: column;
+        width:100%;
+        height:35vh;
+
+    }
+    
+    &__FormLog__input{
+        width: 85%;
+        height: 8vh;
+        border: none;
+        background-color:transparent;
+        border-bottom: 2px solid rgb(160, 158, 158);
+        &:focus {
+            outline: none;
+            }
+    }
+
+    &__FormLog__button{
+        background-color:rgb(0, 155, 207);
+        border: none;
+        color:white;
+        font-weight: bold;
+        width:85%;
+        height:7vh;
+        margin-top: 3vh;
+        border-radius: 6px;
+    }
+}
+
+.link-register{
+    color: rgb(0, 155, 207);
+    text-decoration: none;
+    font-weight: bold;
+}

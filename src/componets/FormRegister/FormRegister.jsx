@@ -19,10 +19,11 @@ export default function RegisterPage () {
     return (
         <form className="formRegister" onSubmit={handleSubmit(onSubmit)}>
             
-            {/* SOLUCIONAR...
-            <label htmlFor="image">Imagen</label>
-            <input type="file" id="image"
-                   {...register("file")}/> */}
+            {/* SOLUCIONAR... */}
+            {/* <label htmlFor="image">Imagen</label>
+            <input type="file" id="image" 
+                   {...register("file")} />
+                   ref={register("file")} */}
 
             <label htmlFor="name">Nombre</label>
             <input id="name" defaultValue="Luisa María de las Nieves"
