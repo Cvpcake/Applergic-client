@@ -5,6 +5,7 @@ import "swiper/css/pagination";
 import "./Slider.scss";
 import { Pagination } from "swiper";
 import { Link } from "react-router-dom"
+
  
   
 const Slider = () => {
@@ -13,6 +14,7 @@ const Slider = () => {
 <div className="Logo">
 <img src="https://res.cloudinary.com/dvawsqdhx/image/upload/v1644320306/Applergic/logo_2x_hvqufs.png" alt="imagen de intro"/>
 </div>
+
 
 <Swiper
         pagination={{
@@ -29,7 +31,7 @@ const Slider = () => {
         
 </Swiper>
 <div className="Botones">
-<Link className="Link1" to="/Login">Saltar</Link>
+<Link className="Link1" to="/Register">Saltar</Link>
 <Link className="Link2" to="/">Terminar {'>'}</Link>
 </div>
 
