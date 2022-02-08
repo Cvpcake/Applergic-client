@@ -31,8 +31,8 @@ const Slider = () => {
         
 </Swiper>
 <div className="Botones">
-<Link className="Link1" to="/Register">Saltar</Link>
-<Link className="Link2" to="/">Terminar {'>'}</Link>
+<Link className="Link1" to="/">Saltar</Link>
+<Link className="Link2" to="/Login">Terminar {'>'}</Link>
 </div>
 
 </div>
