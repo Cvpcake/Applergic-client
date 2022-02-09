@@ -1,4 +1,28 @@
 .home-container {
     display: flex;
     flex-direction: column;
+    text-align: center;
+    .escanear {
+        border-radius: 10px;
+        border-color: #26c7dc;
+        width: 80%;
+        padding: 20px 20px;
+        background-color: #26c7dc;
+        color: whitesmoke;
+    }
+    .buscar {
+        border-radius: 10px;
+        width: 80%;
+        padding: 20px 20px;
+        background-color:#c4c4c4;
+        color: whitesmoke;
+    }
+    .emergencias {
+        border-radius: 10px;
+        width: 80%;
+        padding: 20px 20px;
+        background-color: #f57c97;
+        color: whitesmoke;
+    }
+
 }
