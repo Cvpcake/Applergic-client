@@ -6,6 +6,7 @@ import Register from "./pages/Register/Register.jsx";
 import LogoIntro from "./pages/LogoIntro/LogoIntro.jsx";
 import { JwtContext } from "./shared/contexts/JwtContext"
 import Login from "./pages/Login/Login"
+import Home from './pages/Home/Home';
 
 function App() {
   const [jwt, setJwt] = useState(localStorage.getItem('token') || null);
@@ -19,6 +20,7 @@ function App() {
           <Route path="/Intro" element={<Intro />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
+          <Route path="/Home" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </div>
