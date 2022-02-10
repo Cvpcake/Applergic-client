@@ -1,16 +1,36 @@
-.LinkLogo{
-    object-fit: contain;
-    
-}
-.LogoContainer{
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: flex-start;
-}
-img{
-    width: 100%;
-    
 
+.H1 {
+text-align: center;
+font-size: 48px;
 
+}
+.P{
+    text-align: center;
+    margin-left: 60px;
+    margin-top: 80px;
+    font-size: 16px;
+}
+.LogoContainer {
+  height: 20vh;
+  width: 100%;
+}
+
+.LinkLogo {
+  object-fit: contain;
+}
+
+.divLogo {
+  width: 100%;
+  height: 59.7vh;
+  position: fixed;
+  background-image: url("../../../public/images/applergicHero.png");
+  //background-color: red;
+  margin: 0;
+  padding: 0;
+  background-size: contain;
+
+  //background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  bottom: 0;
 }
