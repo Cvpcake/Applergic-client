@@ -11,7 +11,7 @@ import {
   SlidePrevButton,
 } from "../SlideNextButton/SlideNextButton";
 import "swiper/css";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // let valueCont = 0
 
 export default function RegisterPage() {
@@ -19,6 +19,8 @@ export default function RegisterPage() {
 
   const { register, handleSubmit } = useForm();
   const [userAllergies, setUserAllergies] = useState([]);
+  const [interruptor, setInterruptor] = useState(false);
+  let navigate = useNavigate();
 
   const onSubmit = (formData) => {
     console.log(formData.allergies);
@@ -26,12 +28,19 @@ export default function RegisterPage() {
       console.log("Register user");
       console.log(res);
       console.log(formData);
+      navigate("/Home")
     });
   };
   console.log(register);
 
   
    const handleCheckChildElement = (event) => {
+    if(interruptor){
+        setInterruptor(false)
+    }else{
+        setInterruptor(true)
+    }
+
     if(!userAllergies.includes(event)){
      console.log('añade', userAllergies)
     const newAllergies = [ ...userAllergies, event ];
@@ -248,12 +257,17 @@ export default function RegisterPage() {
           <h2>CONFIRMAR TU SELECCIÓN</h2>
           <SlidePrevButton />
           <ul className="result-allergies">
-          {userAllergies.map((allergie, index ) => {
+          {interruptor ? 
+          userAllergies.map((allergie, index ) => {
             
             return <li key={index}>{allergie}</li>;
-          })}
+          }) : 
+          userAllergies.map((allergie, index ) => {
+            
+            return <li key={index}>{allergie}</li>;
+          }) }
           </ul>
-          <button type="submit"><Link to='/Home'></Link>CONFIRMAR</button>
+          <button type="submit">CONFIRMAR</button>
         </SwiperSlide>
       </Swiper>
     </form>

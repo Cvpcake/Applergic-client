@@ -11,7 +11,6 @@ height: 32vh;
 border-bottom-right-radius: 25% 45%;
 
     &__LogApp{
-    position:absolute;
     width:22%;
     margin-left: 5%;
     margin-bottom: 3%;
@@ -28,7 +27,7 @@ border-bottom-right-radius: 25% 45%;
     
     &__text{
         height:8vh;
-        width:50%;
+        width:55%;
         margin-left:7%;
     }
 }
@@ -53,7 +52,7 @@ border-bottom-right-radius: 25% 45%;
     
     &__FormLog__input{
         width: 85%;
-        height: 8vh;
+        height: 5vh;
         border: none;
         background-color:transparent;
         border-bottom: 2px solid rgb(160, 158, 158);
@@ -67,8 +66,9 @@ border-bottom-right-radius: 25% 45%;
         border: none;
         color:white;
         font-weight: bold;
+        font-size: 105%;
         width:85%;
-        height:7vh;
+        height:6vh;
         margin-top: 3vh;
         border-radius: 6px;
     }
