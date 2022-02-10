@@ -1,10 +1,14 @@
 import React from 'react'
 import RegisterPage from '../../componets/FormRegister/FormRegister'
+import { useNavigate } from 'react-router-dom';
+
 
 const Register = () => {
-  return (
+   const navigate = useNavigate()
+  
+   return (
     <div>
-      <RegisterPage/>
+      <RegisterPage afterSubmit={() => navigate('/Home')}/>
     </div>
   )
 }

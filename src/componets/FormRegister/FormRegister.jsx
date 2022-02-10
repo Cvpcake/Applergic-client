@@ -11,11 +11,12 @@ import {
   SlidePrevButton,
 } from "../SlideNextButton/SlideNextButton";
 import "swiper/css";
-import { Link } from "react-router-dom";
-
+import { Link } from 'react-router-dom';
 // let valueCont = 0
 
 export default function RegisterPage() {
+ 
+
   const { register, handleSubmit } = useForm();
   const [userAllergies, setUserAllergies] = useState([]);
 
@@ -29,19 +30,17 @@ export default function RegisterPage() {
   };
   console.log(register);
 
- /*  const checkAllergies = (valueAllergic) => {
-    if (!userAllergies.includes(valueAllergic)) {
-      setUserAllergies({ ...userAllergies, valueAllergic });
-    } else {
-      userAllergies.splice(valueAllergic);
-    }
-  }; */
-
+  
    const handleCheckChildElement = (event) => {
+    if(!userAllergies.includes(event)){
+     console.log('añade', userAllergies)
     const newAllergies = [ ...userAllergies, event ];
-    
     setUserAllergies(newAllergies);
-   
+  } else {
+    console.log('elimina', userAllergies)
+    let pos = userAllergies.indexOf(event);
+    userAllergies.splice(pos, 1);
+  }
   } 
 
   return (
@@ -145,192 +144,116 @@ export default function RegisterPage() {
 
           <div id="ck-button">
             <label>
-              <input name="glutenAllergie" type="checkbox" value="Gluten" {...register("allergies")} />
+              <input onClick={() => handleCheckChildElement('Gluten')}  name="glutenAllergie" type="checkbox" value="Gluten" {...register("allergies")} />
               <span>Gluten</span>
             </label>
           </div>
 
-
-
-          <button type="button" className="checkbox">
-            <input
-              id="Gluten"
-              type="checkbox"
-              value="Gluten"
-              name="Gluten"
-              {...register("allergies")}
-            />
-            <label htmlFor="Gluten">
-              <span className="active">Gluten</span>
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Crustaceos')} type="checkbox" value="Crustaceos" {...register("allergies")} />
+              <span>Crustaceos</span>
             </label>
+          </div>
+
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Lacteos')} type="checkbox" value="Lacteos" {...register("allergies")} />
+              <span>Lacteos</span>
+            </label>
+          </div>
+
             
-          </button>
-          <button type="button" className="checkbox">
-            <input
-              id="Crustaceos"
-              type="checkbox"
-              value="Crustaceos"
-              name="Crustaceos"
-              {...register("allergies")}
-            />
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Cacao')} type="checkbox" value="Cacao" {...register("allergies")} />
+              <span>Cacao</span>
+            </label>
+          </div>
+            
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Pescado')} type="checkbox" value="Pescado" {...register("allergies")} />
+              <span>Pescado</span>
+            </label>
+          </div>
+        
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Soja')} type="checkbox" value="Soja" {...register("allergies")} />
+              <span>Soja</span>
+            </label>
+          </div>
+         
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Frutos de cáscara')} type="checkbox" value="Frutos de cáscara" {...register("allergies")} />
+              <span>Frutos de cáscara</span>
+            </label>
+          </div>
 
-            <label htmlFor="Crustaceos">
-              <span className="active">Crustaceos</span>
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Apio')} type="checkbox" value="Apio" {...register("allergies")} />
+              <span>Apio</span>
             </label>
-          </button>
-          <button type="button" className="checkbox">
-            <input
-              id="Lacteos"
-              type="checkbox"
-              value="Lacteos"
-              name="Lacteos"
-              {...register("allergies")}
-            />
-            <label htmlFor="Lacteos">
-              <span className="active">Lacteos</span>
+          </div>
+         
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Mostaza')} type="checkbox" value="Mostaza" {...register("allergies")} />
+              <span>Mostaza</span>
             </label>
-          </button>
-          <button type="button" className="checkbox">
-            <input
-              id="Cacao"
-              type="checkbox"
-              value="Cacao"
-              name="Cacao"
-              {...register("allergies")}
-            />
-            <label htmlFor="Cacao">
-              <span className="active">Cacao</span>
+          </div>
+         
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Sésamo')} type="checkbox" value="Sésamo" {...register("allergies")} />
+              <span>Sésamo</span>
             </label>
-          </button>
-          <button type="button" className="checkbox">
-            <input
-              id="Pescado"
-              type="checkbox"
-              value="Pescado"
-              name="Pescado"
-              {...register("allergies")}
-            />
-            <label htmlFor="Pescado">
-              <span className="active">Pescado</span>
+          </div>
+        
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Sulfitos')} type="checkbox" value="Sulfitos" {...register("allergies")} />
+              <span>Sulfitos</span>
             </label>
-          </button>
-          <button type="button" className="checkbox">
-            <input
-              id="Soja"
-              type="checkbox"
-              value="Soja"
-              name="Soja"
-              {...register("allergies")}
-            />
-            <label htmlFor="Soja">
-              <span className="active">Soja</span>
+          </div>
+            
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Moluscos')} type="checkbox" value="Moluscos" {...register("allergies")} />
+              <span>Moluscos</span>
             </label>
-          </button>
-          <button type="button" className="checkbox">
-            <input
-              id="Frutos de cáscara"
-              type="checkbox"
-              value="Frutos de cáscara"
-              name="Frutos de cáscara"
-              {...register("allergies")}
-            />
-            <label htmlFor="Frutos de cáscara">
-              <span className="active">Frutos de cáscara</span>
+          </div>
+     
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Altramuces')} type="checkbox" value="Altramuces" {...register("allergies")} />
+              <span>Altramuces</span>
             </label>
-          </button>
-          <button type="button" className="checkbox">
-            <input
-              id="Apio"
-              type="checkbox"
-              value="Apio"
-              name="Apio"
-              {...register("allergies")}
-            />
-            <label htmlFor="Apio">
-              <span className="active">Apio</span>
-            </label>
-          </button>
-          <button type="button" className="checkbox">
-            <input
-              id="Mostaza"
-              type="checkbox"
-              value="Mostaza"
-              name="Mostaza"
-              {...register("allergies")}
-            />
-            <label htmlFor="Mostaza">
-              <span className="active">Mostaza</span>
-            </label>
-          </button>
-          <button type="button" className="checkbox">
-            <input
-              id="Sésamo"
-              type="checkbox"
-              value="Sésamo"
-              name="Sésamo"
-              {...register("allergies")}
-            />
-            <label htmlFor="Sésamo">
-              <span className="active">Sésamo</span>
-            </label>
-          </button>
-          <button type="button" className="checkbox">
-            <input
-              id="Sulfitos"
-              type="checkbox"
-              value="Sulfitos"
-              name="Sulfitos"
-              {...register("allergies")}
-            />
-            <label htmlFor="Sulfitos">
-              <span className="active">Sulfitos</span>
-            </label>
-          </button>
-          <button type="button" className="checkbox">
-            <input
-              id="Moluscos"
-              type="checkbox"
-              value="Moluscos"
-              name="Moluscos"
-              {...register("allergies")}
-            />
-            <label htmlFor="Moluscos">
-              <span className="active">Moluscos</span>
-            </label>
-          </button>
-          <button type="button" className="checkbox">
-            <input
-              id="Altramuces"
-              type="checkbox"
-              value="Altramuces"
-              name="Altramuces"
-              {...register("allergies")}
-            />
-            <label htmlFor="Altramuces">
-              <span className="active">Altramuces</span>
-            </label>
-          </button>
-          <button type="button" className="checkbox">
-            <input
-              id="Setas"
-              type="checkbox"
-              value="Setas"
-              name="Setas"
-              {...register("allergies")}
-            />
-            <label htmlFor="Setas">
-              <span className="active">Setas</span>
-            </label>
-          </button>
+          </div>
 
-          {/*       </ul> */}
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Setas')} type="checkbox" value="Setas" {...register("allergies")} />
+              <span>Setas</span>
+            </label>
+          </div>
+    
           <SlideNextButton3 />
         </SwiperSlide>
 
         <SwiperSlide>
           <h2>CONFIRMAR TU SELECCIÓN</h2>
           <SlidePrevButton />
-          <input type="submit" value="CONFIRMAR"></input>
+          <ul className="result-allergies">
+          {userAllergies.map((allergie, index ) => {
+            
+            return <li key={index}>{allergie}</li>;
+          })}
+          </ul>
+          <button type="submit"><Link to='/Home'></Link>CONFIRMAR</button>
         </SwiperSlide>
       </Swiper>
     </form>
