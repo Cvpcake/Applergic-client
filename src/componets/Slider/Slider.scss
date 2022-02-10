@@ -4,10 +4,14 @@
   }
   
   .swiper-slide {
+    font-family: 'Montserrat', sans-serif;
     flex-direction: column;
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
     background: #fff;
+    P{
+      max-width: 50%;
+    }
     
   
     /* Center slide text vertically */
@@ -65,9 +69,17 @@
       margin-bottom:100px ;
       margin-top:50px;
       text-align: center;
+      
       img{
           width: 30%;
       }
       
 
   }
+ /*  .parrafo{
+    flex-direction: column;
+    text-align: center;
+    font-size: 16px;
+    background: #fff;
+
+  }  */

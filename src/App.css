@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap%27');
 
 #app { height: 100% }
 html,
@@ -8,7 +8,7 @@ body {
 }
 
 body {
-  background: rgb(255, 255, 255);
+  background: rgb(253, 253, 253);
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #000;

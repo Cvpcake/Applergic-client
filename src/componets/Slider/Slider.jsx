@@ -23,15 +23,14 @@ const Slider = () => {
         modules={[Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide><img src='https://res.cloudinary.com/dvawsqdhx/image/upload/v1644320313/Applergic/scan2_mtkr5j.png' alt='imagen slide 1'/><p>¡Bienvenido aApplergic! Escanea el código de barras de tu producto y Applergic te dirá si es apto para ti</p></SwiperSlide>
-        <SwiperSlide><img src='https://res.cloudinary.com/dvawsqdhx/image/upload/v1644320313/Applergic/scan2_mtkr5j.png' alt='imagen slide 1'/><p>¡Bienvenido aApplergic! Escanea el código de barras de tu producto y Applergic te dirá si es apto para ti</p></SwiperSlide>
-        <SwiperSlide><img src='https://res.cloudinary.com/dvawsqdhx/image/upload/v1644320313/Applergic/scan2_mtkr5j.png' alt='imagen slide 1'/><p>¡Bienvenido aApplergic! Escanea el código de barras de tu producto y Applergic te dirá si es apto para ti</p></SwiperSlide>
-        <SwiperSlide><img src='https://res.cloudinary.com/dvawsqdhx/image/upload/v1644320313/Applergic/scan2_mtkr5j.png' alt='imagen slide 1'/><p>¡Bienvenido aApplergic! Escanea el código de barras de tu producto y Applergic te dirá si es apto para ti</p></SwiperSlide>
-        
+        <SwiperSlide><img src='https://res.cloudinary.com/dvawsqdhx/image/upload/v1644320313/Applergic/scan2_mtkr5j.png' alt='imagen slide 1'/><p className="parrafo">¡Bienvenido aApplergic! Escanea el código de barras de tu producto y Applergic te dirá si es apto para ti.</p></SwiperSlide>
+        <SwiperSlide><img src='https://res.cloudinary.com/dvawsqdhx/image/upload/v1644319818/Applergic/rectangle_3x_guuzig.png' alt='imagen slide 1'/><p className="parafo">lleva tu diario de compras y actividades.</p></SwiperSlide>
+        <SwiperSlide><img src='https://res.cloudinary.com/dvawsqdhx/image/upload/v1644320301/Applergic/ambulancia_jy8h9e.png' alt='imagen slide 1'/><p className="parrafo">En caso de emergencia nos pondremos en contacto con la persona que nos digas.</p></SwiperSlide>
+       
         
 </Swiper>
 <div className="Botones">
-<Link className="Link1" to="/">Saltar</Link>
+<Link className="Link1" to="/Login">Saltar</Link>
 <Link className="Link2" to="/Login">Terminar {'>'}</Link>
 </div>
 
