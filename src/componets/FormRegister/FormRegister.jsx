@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useForm } from "react-hook-form";
 import { API } from "../../shared/services/api";
 import './FormRegister.scss';
@@ -11,7 +11,7 @@ import "swiper/css";
 
 export default function RegisterPage () {
     const { register, handleSubmit } = useForm();
-
+    const [allergics, setAllergics] = useState([]);
     const onSubmit = formData => {
         console.log(register)
         console.log(formData)
@@ -86,17 +86,34 @@ export default function RegisterPage () {
         </SwiperSlide>
 
         <SwiperSlide>
-            <input id="Huevo" type="checkbox" defaultValue="Huevo"
-                    {...register("allergies")}/>
+       {/*  <ul> 
+            <li> */}
             
-            <input id="Gluten" type="checkbox"
+            <button type="button" className="Huevo">
+            
+            <input id="Huevo" type="checkbox" value="Huevo" name="Huevo"
                     {...register("allergies")}/>
-                
+                    <label htmlFor="Huevo">
+                    <span className="active">Huevo</span>
+                    </label>
+                    </button>
+                    
+           {/*  </li> */}
+            
+           <button type="button" className="Huevo">
+            
+            <input id="Gluten" type="checkbox" value="Gluten" name="Gluten"
+                    {...register("allergies")}/>
+                    <label htmlFor="Gluten">
+                    <span className="active">Gluten</span>
+                    </label>
+                    </button>
             <input id="Lacteos" type="checkbox"
                     {...register("allergies")}/>
             
              <input id="Cacao" type="checkbox"
                     {...register("allergies")}/>
+  {/*       </ul> */}
             <SlideNextButton3 />
         </SwiperSlide> 
 
