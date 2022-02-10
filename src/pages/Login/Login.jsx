@@ -2,25 +2,13 @@ import React, { useContext } from 'react'
 import { useForm } from "react-hook-form";
 import { JwtContext } from '../../shared/contexts/JwtContext';
 import { API } from "../../shared/services/api";
-<<<<<<< HEAD
-import './Login.scss';
-=======
 import './Login.scss'
 import { Link } from "react-router-dom"
->>>>>>> master
 
 export default function Login () {
     const { register, handleSubmit } = useForm();
     const { setJwt } = useContext(JwtContext);
 
-<<<<<<< HEAD
-    const onSubmit = formData => {
-        API.post('users/login', formData).then(res => {
-            localStorage.setItem('token', res.data.token)
-            localStorage.setItem('user', JSON.stringify(res.data.user))
-            console.log(res.data.token, res.data.user);
-            console.log(formData);
-=======
     const onSubmit = (formData) => {
         API.post('users/login', formData).then(res => {
             localStorage.setItem('token', res.data.token)
@@ -28,7 +16,6 @@ export default function Login () {
             console.log(res.data)
             console.log(res.config.data)
             console.log(res)
->>>>>>> master
             setJwt(true);
         })
     }

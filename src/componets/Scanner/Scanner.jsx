@@ -12,18 +12,18 @@ function Scanner({ mode }) {
 
   return (
     <div className="scanner-card">
-      <h1>Escaneando...</h1>
+      <h1 className="Escaneado">Escaneando...</h1>
       {mode === 1 ? (
-        <p>
+        <p className="p1">
           Tan solo tienes que centrar el <span>código de barras</span> del producto en el
           recuadro.
         </p>
       ) : mode === 2 ? (
-        <p>
+        <p className="p2">
           Tan solo tienes que centrar el código <span>QR</span> del producto en el recuadro.
         </p>
       ) : (
-        <p>
+        <p className="p3">
           Tan solo tienes que aproximar tu movil al símbolo <span>NFC</span> de la etiqueta digital del
           producto.
         </p>
@@ -57,7 +57,7 @@ function Scanner({ mode }) {
 
       <button onClick={dismissQrReader}>Empezar escaneo</button>
 
-      <p>{data}</p>
+      <p className="p4">{data}</p>
     </div>
   );
 }
