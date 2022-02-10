@@ -4,12 +4,16 @@ import '../LogoIntro/LogoIntro.scss'
 
 const LogoIntro = () => {
   return <div className="LogoContainer">
-  <h1>
+  <h1 className="H1">
       <span>Applergic</span>
       
   </h1>
-  <p>Mi guía alimentaria</p>
-  <Link className="LinkLogo" to="/Intro"><img src="https://res.cloudinary.com/dvawsqdhx/image/upload/v1644319806/Applergic/logoApplergicFigurasGiro_3x_pkrurv.png" alt="imagen logo"/></Link>
+  <p className="P">
+      Mi guía alimentaria
+  </p>
+  <div className="divLogo">
+  <Link className="LinkLogo" to="/Intro"></Link>
+  </div>
   </div>;
 };
 
