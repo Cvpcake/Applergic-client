@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../LogoIntro/LogoIntro.scss'
 
 const LogoIntro = () => {
-  return <div>
+  return <div className="wrap">
   <div className="LogoContainer">
   <h1 className="H1">
       <span>Applergic</span>
