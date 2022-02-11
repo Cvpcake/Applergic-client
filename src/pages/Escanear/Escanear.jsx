@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Scanner from "../../componets/Scanner/Scanner";
 import './Escanear.scss';
+
 const Escanear = () => {
   const [showResults, setShowResults] = useState(1);
+ 
 
   return (
     <div className="Escanear-container">
@@ -27,7 +29,6 @@ const Escanear = () => {
         <img src="https://res.cloudinary.com/dvawsqdhx/image/upload/v1644425344/Applergic/nfc_2x_1_txjpee.png" alt="Boton NFC"/>
         </button>
         </div>
-      
     </div>
   );
 };

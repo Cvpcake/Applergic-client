@@ -1,11 +1,15 @@
-import React from "react";
+import React, {useState, useContext} from "react";
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
+import Results from '../Results/ResultsComp';
 import "./Scanner.scss";
+import { BarcodeContext } from '../../shared/contexts/BarcodeContext'
+
 
 function Scanner({ mode }) {
-  const [data, setData] = React.useState("Not Found");
-  const [stopStream, setStopStream] = React.useState(true);
-
+  const [data, setData] = useState("");
+  const [stopStream, setStopStream] = useState(true);
+/*   const { setBarcode } = useContext(BarcodeContext);
+ */
   const dismissQrReader = () => {
     setStopStream(!stopStream);
   };
@@ -32,11 +36,11 @@ function Scanner({ mode }) {
         <BarcodeScannerComponent 
           width={250}
           height={250}
-          onUpdate={(err, result) => {
-            if (result) setData(result.text);
-            else setData("Not Found");
+          onUpdate={(err, result) => { // OPTIONAL CHAINING: no se ejecuta si lo que hay despues de la interrogación es UNDEFINED
+            (result?.text ? setData(result.text) : setData(''))
           }}
           stopStream={stopStream}
+          
         />
       ) : mode === 1 ? (
         <img className="img-default1"
@@ -56,8 +60,8 @@ function Scanner({ mode }) {
       )}
 
       <button onClick={dismissQrReader}>Empezar escaneo</button>
-
-      <p className="p4">{data}</p>
+        
+      <Results data={data} dismissQrReader={dismissQrReader}/>
     </div>
   );
 }
