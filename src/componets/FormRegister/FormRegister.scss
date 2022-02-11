@@ -1,26 +1,44 @@
+.cont-select{
+    width: 85%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction: column;
+
+    &--Allergens{
+        width: 85%;
+    }
+    
+    &--deployed{
+     width: 85%;
+     display: flex;
+     justify-content:space-between;   
+    }
+}
 
 
-
- 
  #ck-button {
      margin:4px;
      background-color:#EFEFEF;
-     border-radius:4px;
+     border-radius:20px;
      border:1px solid #D0D0D0;
      overflow:auto;
      float:left;
+     :hover{
+         cursor:pointer;
+     }
  }
  
  
  #ck-button label {
      float:left;
-     width:4.0em;
  }
  
  #ck-button label span {
      text-align:center;
-     padding:3px 0px;
+     padding: 6px 10px;
      display:block;
+     
  }
  
  #ck-button label input {
@@ -31,4 +49,23 @@
  #ck-button input:checked + span {
      background:red;
      color:#fff;
+ }
+
+.allLetters{
+    display:flex;
+    flex-wrap: wrap;
+    align-items:center;
+    justify-content:center;
+    width: 250px;
+    height: 250px;
+
+    &__single{
+        text-decoration: none;
+        width:30px;
+        color:white;
+        border-radius: 50%;
+        background-color: rgb(184, 184, 184);
+        padding: 6px 0;
+        margin:5%;
+    }
  }

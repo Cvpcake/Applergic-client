@@ -4,6 +4,8 @@ import { API } from "../../shared/services/api";
 import "./FormRegister.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Scrollbar } from "swiper";
+import { useNavigate } from 'react-router-dom';
+
 import {
   SlideNextButton1,
   SlideNextButton2,
@@ -11,8 +13,7 @@ import {
   SlidePrevButton,
 } from "../SlideNextButton/SlideNextButton";
 import "swiper/css";
-import { useNavigate } from 'react-router-dom';
-// let valueCont = 0
+
 
 export default function RegisterPage() {
  
@@ -20,20 +21,22 @@ export default function RegisterPage() {
   const { register, handleSubmit } = useForm();
   const [userAllergies, setUserAllergies] = useState([]);
   const [interruptor, setInterruptor] = useState(false);
+  const [change, setChange] = useState('');
+
   let navigate = useNavigate();
 
+          //--------FUNCTION SUBMIT FORM--------
   const onSubmit = (formData) => {
     console.log(formData.allergies);
     API.post("users/", formData).then((res) => {
       console.log("Register user");
-      console.log(res);
       console.log(formData);
       navigate("/Home")
     });
   };
-  console.log(register);
 
-  
+
+          //-------FUNCTION CHECK ALLERGENS---------
    const handleCheckChildElement = (event) => {
     if(interruptor){
         setInterruptor(false)
@@ -51,9 +54,18 @@ export default function RegisterPage() {
     userAllergies.splice(pos, 1);
   }
   } 
+          //------------FUNCTION DEPLOY ALLERGENS---------------
+  // const deployAllerg = () =>{
+  //   if(change){
+  //     setChange(false)
+  //   }else{
+  //     setChange(true)
+  //   }
+  // }
 
   return (
     <form className="formRegister" onSubmit={handleSubmit(onSubmit)}>
+      
       {/* SOLUCIONAR...xd */}
       {/* <label htmlFor="image">Imagen</label>
             <input type="file" id="image" 
@@ -65,6 +77,8 @@ export default function RegisterPage() {
         allowTouchMove={false}
         className="swiperForm"
       >
+            {/* ------------------ FORM DATA USER ----------------------*/}
+
         <SwiperSlide>
           <label htmlFor="name">Nombre</label>
           <input
@@ -104,6 +118,8 @@ export default function RegisterPage() {
           <SlideNextButton1 />
         </SwiperSlide>
 
+            {/* --------------- FORM CONTACT EMERGENCI USER --------------- */}
+
         <SwiperSlide>
           <label htmlFor="nameContact">Nombre Completo de tu contacto</label>
           <input
@@ -137,16 +153,145 @@ export default function RegisterPage() {
             defaultValue="Mutua? idk xd"
             {...register("SecureCompany", { required: true })}
           />
-          <SlideNextButton2 />
+          <SlideNextButton2 s/>
         </SwiperSlide>
 
+              {/* ----------------FORM SELECT ALLERGENS-------------------- */}
+
         <SwiperSlide>
-          {/*  <ul> 
-            <li> */}
+            
+            <div className="allLetters">
+              <a className="allLetters__single" onClick={() => setChange('A')} href="#a">A</a>
+              <a className="allLetters__single" onClick={() => setChange('C')} href="#c">C</a>
+              <a className="allLetters__single" href="#f">F</a>
+              <a className="allLetters__single" href="#g">G</a>
+              <a className="allLetters__single" href="#h">H</a>
+              <a className="allLetters__single" href="#k">K</a>
+              <a className="allLetters__single" href="#l">L</a>
+              <a className="allLetters__single" href="#m">M</a>
+              <a className="allLetters__single" href="#n">N</a>
+              <a className="allLetters__single" href="#p">P</a>
+              <a className="allLetters__single" href="#r">R</a>
+              <a className="allLetters__single" href="#s">S</a>
+              <a className="allLetters__single" href="#t">T</a>
+              <a className="allLetters__single" href="#u">U</a>
+              <a className="allLetters__single" href="#v">V</a>
+              <a className="allLetters__single" href="#y">Y</a>
+            </div>
+
+        <div className="cont-select" id="a" >
+            <div className="cont-select--deployed">
+              <p>A</p>{change === 'A' ? <p onClick={() => setChange('')}>▲</p> : <p onClick={() => setChange('A')}>▼</p>}
+            </div>
+        {change === 'A'? 
+        <div className="cont-select--Allergens">
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Ácido benzoico')} type="checkbox" value="ácido benzoico" {...register("allergies")} />
+              <span>Ácido benzoico</span>
+            </label>
+          </div>
 
           <div id="ck-button">
             <label>
-              <input onClick={() => handleCheckChildElement('Huevo')} name="huevoAllergie" type="checkbox" value="Huevo" {...register("allergies")} />
+              <input onClick={() => handleCheckChildElement('Almendras')} type="checkbox" value="almendras" {...register("allergies")} />
+              <span>Almendras</span>
+            </label>
+          </div>
+          
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Altramuces')} type="checkbox" value="altramuces" {...register("allergies")} />
+              <span>Altramuces</span>
+            </label>
+          </div>
+
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Anacardo')} type="checkbox" value="anacardo" {...register("allergies")} />
+              <span>Anacardo</span>
+            </label>
+          </div>
+
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Apio')} type="checkbox" value="apio" {...register("allergies")} />
+              <span>Apio</span>
+            </label>
+          </div>
+          
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Arroz')} type="checkbox" value="arroz" {...register("allergies")} />
+              <span>Arroz</span>
+            </label>
+          </div>
+
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Avellana')} type="checkbox" value="avellana" {...register("allergies")} />
+              <span>Avellana</span>
+            </label>
+          </div>
+
+        </div>
+        : null}
+      </div>
+
+      <div className="cont-select" id="c" >
+            <div className="cont-select--deployed">
+              <p>C</p>{change === 'C' ? <p onClick={() => setChange('')}>▲</p> : <p onClick={() => setChange('C')}>▼</p>}
+            </div>
+            {change === 'C' ? 
+        <div className="cont-select--Allergens">    
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Cacahuete')} type="checkbox" value="cacahuete" {...register("allergies")} />
+              <span>Cacahuete</span>
+            </label>
+          </div>
+          
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Cacao')} type="checkbox" value="cacao" {...register("allergies")} />
+              <span>Cacao</span>
+            </label>
+          </div>
+
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Castaña')} type="checkbox" value="castaña" {...register("allergies")} />
+              <span>Castaña</span>
+            </label>
+          </div>
+
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Cereales')} type="checkbox" value="cereales" {...register("allergies")} />
+              <span>Cereales</span>
+            </label>
+          </div>
+
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Coco')} type="checkbox" value="coco" {...register("allergies")} />
+              <span>Coco</span>
+            </label>
+          </div>
+
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Crustaceos')} type="checkbox" value="crustaceos" {...register("allergies")} />
+              <span>Crustaceos</span>
+            </label>
+          </div>
+        </div>: null}
+      </div>
+
+
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Huevo')} name="huevoAllergie" type="checkbox" value="huevo" {...register("allergies")} />
               <span>Huevo</span>
             </label>
           </div>
@@ -158,12 +303,7 @@ export default function RegisterPage() {
             </label>
           </div>
 
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Crustaceos')} type="checkbox" value="Crustaceos" {...register("allergies")} />
-              <span>Crustaceos</span>
-            </label>
-          </div>
+          
 
           <div id="ck-button">
             <label>
@@ -173,12 +313,7 @@ export default function RegisterPage() {
           </div>
 
             
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Cacao')} type="checkbox" value="Cacao" {...register("allergies")} />
-              <span>Cacao</span>
-            </label>
-          </div>
+          
             
           <div id="ck-button">
             <label>
@@ -201,12 +336,7 @@ export default function RegisterPage() {
             </label>
           </div>
 
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Apio')} type="checkbox" value="Apio" {...register("allergies")} />
-              <span>Apio</span>
-            </label>
-          </div>
+          
          
           <div id="ck-button">
             <label>
@@ -236,12 +366,7 @@ export default function RegisterPage() {
             </label>
           </div>
      
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Altramuces')} type="checkbox" value="Altramuces" {...register("allergies")} />
-              <span>Altramuces</span>
-            </label>
-          </div>
+          
 
           <div id="ck-button">
             <label>
@@ -253,22 +378,24 @@ export default function RegisterPage() {
           <SlideNextButton3 />
         </SwiperSlide>
 
+          {/* ----------------- CONFIRM ALLERGENS & SEND REGISTER -------------------- */}
+
         <SwiperSlide>
           <h2>CONFIRMAR TU SELECCIÓN</h2>
           <SlidePrevButton />
+
           <ul className="result-allergies">
           {interruptor ? 
-          userAllergies.map((allergie, index ) => {
-            
-            return <li key={index}>{allergie}</li>;
-          }) : 
-          userAllergies.map((allergie, index ) => {
-            
-            return <li key={index}>{allergie}</li>;
-          }) }
+              userAllergies.map((allergie, index ) => {return <li key={index}>{allergie}</li>}) 
+                : 
+              userAllergies.map((allergie, index ) => {return <li key={index}>{allergie}</li>;})
+            }
+
           </ul>
+
           <button type="submit">CONFIRMAR</button>
         </SwiperSlide>
+
       </Swiper>
     </form>
   );
