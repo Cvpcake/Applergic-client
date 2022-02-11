@@ -163,7 +163,7 @@ export default function RegisterPage() {
             <div className="allLetters">
               <a className="allLetters__single" onClick={() => setChange('A')} href="#a">A</a>
               <a className="allLetters__single" onClick={() => setChange('C')} href="#c">C</a>
-              <a className="allLetters__single" href="#f">F</a>
+              <a className="allLetters__single" onClick={() => setChange('F')} href="#f">F</a>
               <a className="allLetters__single" href="#g">G</a>
               <a className="allLetters__single" href="#h">H</a>
               <a className="allLetters__single" href="#k">K</a>
@@ -288,6 +288,22 @@ export default function RegisterPage() {
         </div>: null}
       </div>
 
+      <div className="cont-select" id="f" >
+            <div className="cont-select--deployed">
+              <p>F</p>{change === 'F' ? <p onClick={() => setChange('')}>▲</p> : <p onClick={() => setChange('F')}>▼</p>}
+            </div>
+            {change === 'F' ? 
+        <div className="cont-select--Allergens">        
+          <div id="ck-button">
+            <label>
+              <input onClick={() => handleCheckChildElement('Frutos de cáscara')} type="checkbox" value="Frutos de cáscara" {...register("allergies")} />
+              <span>Frutos de cáscara</span>
+            </label>
+          </div>
+        </div> : null}
+      </div>
+
+
 
           <div id="ck-button">
             <label>
@@ -329,12 +345,7 @@ export default function RegisterPage() {
             </label>
           </div>
          
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Frutos de cáscara')} type="checkbox" value="Frutos de cáscara" {...register("allergies")} />
-              <span>Frutos de cáscara</span>
-            </label>
-          </div>
+          
 
           
          
