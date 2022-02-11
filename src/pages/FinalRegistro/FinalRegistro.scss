@@ -1,0 +1,74 @@
+.HeaderContainer{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+    
+}
+
+.P40{
+    color: #27C7DC;
+    font-size: 16px;
+
+}
+.P50{
+    text-align: center;
+
+}
+
+.DivImg{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+      height: 35vh;
+      margin-top: 100px;
+      justify-content: center;
+
+      
+
+
+
+}
+
+.OK{
+    width: 200px;
+      height: 200px;
+      justify-content: center;
+      margin-top: 90px;
+
+}
+
+.Titulo123{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    text-align: center;
+    
+}
+.H1Terminado{
+    
+    text-align: center;
+    font-size: 18px;
+    margin-top: 50px;
+    
+
+}
+
+.DIVbottomESCAm{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 90px;
+      
+
+
+}
+.BottomSSCAM{
+    background-color: #27C7DC;
+    height: 50px;
+    width: 200px;
+    border-radius: 20%;
+}
