@@ -183,7 +183,7 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="a" >
             <div className="cont-select--deployed">
-              <p>A</p>{changeA === 'A' ? <p onClick={() => setChangeA('Ac')}>▲</p> : <p onClick={() => setChangeA('A')}>▼</p>}
+              <p className="allLetters__single">A</p>   {changeA === 'A' ? <p onClick={() => setChangeA('Ac')}>▲</p> : <p onClick={() => setChangeA('A')}>▼</p>}
             </div>
         {changeA === 'A'? 
          <div className="cont-select--Allergens">
@@ -241,7 +241,7 @@ export default function RegisterPage() {
 
       <div className="cont-select" id="c" >
             <div className="cont-select--deployed">
-              <p>C</p>{changeC === 'C' ? <p onClick={() => setChangeC('Cc')}>▲</p> : <p onClick={() => setChangeC('C')}>▼</p>}
+              <p className="allLetters__single">C</p>{changeC === 'C' ? <p onClick={() => setChangeC('Cc')}>▲</p> : <p onClick={() => setChangeC('C')}>▼</p>}
             </div>
             {changeC === 'C' ? 
         <div className="cont-select--Allergens">    
@@ -291,7 +291,7 @@ export default function RegisterPage() {
 
       <div className="cont-select" id="f" >
             <div className="cont-select--deployed">
-              <p>F</p>{changeF === 'F' ? <p onClick={() => setChangeF('Fc')}>▲</p> : <p onClick={() => setChangeF('F')}>▼</p>}
+              <p className="allLetters__single">F</p>{changeF === 'F' ? <p onClick={() => setChangeF('Fc')}>▲</p> : <p onClick={() => setChangeF('F')}>▼</p>}
             </div>
             {changeF === 'F' ? 
         <div className="cont-select--Allergens">        
