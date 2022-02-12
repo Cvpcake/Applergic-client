@@ -12,7 +12,7 @@ const Slider = () => {
   return (
 <div className="DivSlide">
 <div className="Logo">
-<img src="https://res.cloudinary.com/dvawsqdhx/image/upload/v1644320306/Applergic/logo_2x_hvqufs.png" alt="imagen de intro"/>
+<img src="./images/logoAplergic.png" alt="imagen de intro"/>
 </div>
 
 
