@@ -11,6 +11,7 @@ import Buscador from './pages/Buscador/Buscador.jsx';
 import Emergencias from './pages/Emergencias/Emergencias.jsx';
 import Escanear from './pages/Escanear/Escanear.jsx';
 import Results from './pages/Results/Results';
+import FinalRegistro from './pages/FinalRegistro/FinalRegistro.jsx'
 
 function App() {
   const [jwt, setJwt] = useState(localStorage.getItem('token') || null);
@@ -29,6 +30,7 @@ function App() {
           <Route path="/Home/Buscador" element={<Buscador/>} />
           <Route path="/Home/Emergencias" element={<Emergencias/>} />
           <Route path="/Home/Results" element={<Results/>}/>
+          <Route path="/Home/FinalRegistro" element={<FinalRegistro/>} />
         </Routes>
       </BrowserRouter>
     </div>
