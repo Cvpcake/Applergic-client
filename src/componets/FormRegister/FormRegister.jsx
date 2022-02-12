@@ -21,7 +21,9 @@ export default function RegisterPage() {
   const { register, handleSubmit } = useForm();
   const [userAllergies, setUserAllergies] = useState([]);
   const [interruptor, setInterruptor] = useState(false);
-  const [change, setChange] = useState('');
+  const [changeA, setChangeA] = useState('');
+  const [changeC, setChangeC] = useState('');
+  const [changeF, setChangeF] = useState('');
 
   let navigate = useNavigate();
 
@@ -161,9 +163,9 @@ export default function RegisterPage() {
         <SwiperSlide>
             
             <div className="allLetters">
-              <a className="allLetters__single" onClick={() => setChange('A')} href="#a">A</a>
-              <a className="allLetters__single" onClick={() => setChange('C')} href="#c">C</a>
-              <a className="allLetters__single" onClick={() => setChange('F')} href="#f">F</a>
+              <a className="allLetters__single" onClick={() => setChangeA('A')} href="#a">A</a>
+              <a className="allLetters__single" onClick={() => setChangeC('C')} href="#c">C</a>
+              <a className="allLetters__single" onClick={() => setChangeF('F')} href="#f">F</a>
               <a className="allLetters__single" href="#g">G</a>
               <a className="allLetters__single" href="#h">H</a>
               <a className="allLetters__single" href="#k">K</a>
@@ -181,10 +183,10 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="a" >
             <div className="cont-select--deployed">
-              <p>A</p>{change === 'A' ? <p onClick={() => setChange('')}>▲</p> : <p onClick={() => setChange('A')}>▼</p>}
+              <p>A</p>{changeA === 'A' ? <p onClick={() => setChangeA('Ac')}>▲</p> : <p onClick={() => setChangeA('A')}>▼</p>}
             </div>
-        {change === 'A'? 
-        <div className="cont-select--Allergens">
+        {changeA === 'A'? 
+         <div className="cont-select--Allergens">
           <div id="ck-button">
             <label>
               <input onClick={() => handleCheckChildElement('Ácido benzoico')} type="checkbox" value="ácido benzoico" {...register("allergies")} />
@@ -234,15 +236,14 @@ export default function RegisterPage() {
             </label>
           </div>
 
-        </div>
-        : null}
+        </div> : null}
       </div>
 
       <div className="cont-select" id="c" >
             <div className="cont-select--deployed">
-              <p>C</p>{change === 'C' ? <p onClick={() => setChange('')}>▲</p> : <p onClick={() => setChange('C')}>▼</p>}
+              <p>C</p>{changeC === 'C' ? <p onClick={() => setChangeC('Cc')}>▲</p> : <p onClick={() => setChangeC('C')}>▼</p>}
             </div>
-            {change === 'C' ? 
+            {changeC === 'C' ? 
         <div className="cont-select--Allergens">    
           <div id="ck-button">
             <label>
@@ -290,9 +291,9 @@ export default function RegisterPage() {
 
       <div className="cont-select" id="f" >
             <div className="cont-select--deployed">
-              <p>F</p>{change === 'F' ? <p onClick={() => setChange('')}>▲</p> : <p onClick={() => setChange('F')}>▼</p>}
+              <p>F</p>{changeF === 'F' ? <p onClick={() => setChangeF('Fc')}>▲</p> : <p onClick={() => setChangeF('F')}>▼</p>}
             </div>
-            {change === 'F' ? 
+            {changeF === 'F' ? 
         <div className="cont-select--Allergens">        
           <div id="ck-button">
             <label>
