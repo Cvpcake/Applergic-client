@@ -1,11 +1,12 @@
 import React from "react";
 import './FinalRegistro.scss';
+import { Link } from 'react-router-dom';
 
 const FinalRegistro = () => {
   return (
     <div>
       <div className="HeaderContainer">
-        <p className="P40">{"<"} Volver </p>
+      <Link className="LinkVolver56" to="/Home">{"<"} Volver </Link>
         <p className="P50">4 de 4</p>
         <p className="P60">X</p>
       </div>
@@ -22,7 +23,7 @@ const FinalRegistro = () => {
                 producto.
             </h2>
             <div className="DIVbottomESCAm">
-                <button className="BottomSSCAM">Escanea un producto</button>
+            <Link className="Link1562" to="/Home/Escanear">Escanea un producto</Link>
             </div>
         </div>
       </div>
