@@ -6,11 +6,11 @@
     flex-direction: column;
 
     &--Allergens{
-        width: 85%;
+        width: 100%;
     }
     
     &--deployed{
-     width: 85%;
+     width: 100%;
      display: flex;
      justify-content:space-between;   
     }
@@ -19,9 +19,9 @@
 
  #ck-button {
      margin:4px;
-     background-color:#EFEFEF;
+    color:#888686;
      border-radius:20px;
-     border:1px solid #D0D0D0;
+     border:1px solid #888686;
      overflow:auto;
      float:left;
      :hover{
@@ -38,7 +38,7 @@
      text-align:center;
      padding: 6px 10px;
      display:block;
-     
+     font-weight: bold;
  }
  
  #ck-button label input {
@@ -61,16 +61,16 @@
     flex-wrap: wrap;
     align-items:center;
     justify-content:center;
-    width: 250px;
-    height: 250px;
-
+    width: 300px;
+    height: 300px;
+    border:1px solid #888686;
     &__single{
         text-decoration: none;
         width:30px;
         color:white;
         border-radius: 50%;
-        background-color: rgb(184, 184, 184);
+        background-color: #888686;
         padding: 6px 0;
-        margin:5%;
+        margin:6%;
     }
  }

@@ -21,9 +21,30 @@ export default function RegisterPage() {
   const { register, handleSubmit } = useForm();
   const [userAllergies, setUserAllergies] = useState([]);
   const [interruptor, setInterruptor] = useState(false);
+
+          //----------ARRAYS ALLERGENS-----------
+   const letterA = ['Ácido benzoico','Almendras','Altramuces','Anacardo','Api','Arroz','Avellana']
+   const letterC = ['Cacahuete','Cacao', 'Castaña', 'Cereales', 'Coco', 'Crutaceo']
+   const letterF = ['Fenilalanina','Fibras', 'Fresa', 'Fructosa', 'Frutas', 'Frutos de cáscara', 'Frutos rojos']
+   const letterG = ['Gelatina','Gisante', 'Glucosa', 'Gluten']
+   const letterL = ['Lactosa','Leche', 'Legumbres', 'Lenteja','Lino','LTP']
+   const letterM = ['Maiz','Marisco', 'Melocotón', 'Molusco','Mostaza']
+   const letterP = ['Pescado','Piñones', 'Pistachos', 'Plátano']     
+
+
+          //----------STATES ALLERGENS----------
   const [changeA, setChangeA] = useState('');
   const [changeC, setChangeC] = useState('');
   const [changeF, setChangeF] = useState('');
+  const [changeG, setChangeG] = useState('');
+  const [changeH, setChangeH] = useState('');
+  const [changeK, setChangeK] = useState('');
+  const [changeL, setChangeL] = useState('');
+  const [changeM, setChangeM] = useState('');
+  const [changeN, setChangeN] = useState('');
+  const [changeP, setChangeP] = useState('');
+  const [changeR, setChangeR] = useState('');
+
 
   let navigate = useNavigate();
 
@@ -56,14 +77,6 @@ export default function RegisterPage() {
     userAllergies.splice(pos, 1);
   }
   } 
-          //------------FUNCTION DEPLOY ALLERGENS---------------
-  // const deployAllerg = () =>{
-  //   if(change){
-  //     setChange(false)
-  //   }else{
-  //     setChange(true)
-  //   }
-  // }
 
   return (
     <form className="formRegister" onSubmit={handleSubmit(onSubmit)}>
@@ -163,17 +176,17 @@ export default function RegisterPage() {
         <SwiperSlide>
             
             <div className="allLetters">
-              <a className="allLetters__single" onClick={() => setChangeA('A')} href="#a">A</a>
-              <a className="allLetters__single" onClick={() => setChangeC('C')} href="#c">C</a>
-              <a className="allLetters__single" onClick={() => setChangeF('F')} href="#f">F</a>
-              <a className="allLetters__single" href="#g">G</a>
-              <a className="allLetters__single" href="#h">H</a>
-              <a className="allLetters__single" href="#k">K</a>
-              <a className="allLetters__single" href="#l">L</a>
-              <a className="allLetters__single" href="#m">M</a>
-              <a className="allLetters__single" href="#n">N</a>
-              <a className="allLetters__single" href="#p">P</a>
-              <a className="allLetters__single" href="#r">R</a>
+              <a className="allLetters__single" onClick={() => setChangeA('A')} href="#a" >A</a>
+              <a className="allLetters__single" onClick={() => setChangeC('C')} href="#c" >C</a>
+              <a className="allLetters__single" onClick={() => setChangeF('F')} href="#f" >F</a>
+              <a className="allLetters__single" onClick={() => setChangeG('G')} href="#g" >G</a>
+              <a className="allLetters__single" onClick={() => setChangeH('H')} href="#h" >H</a>
+              <a className="allLetters__single" onClick={() => setChangeK('K')} href="#k" >K</a>
+              <a className="allLetters__single" onClick={() => setChangeL('L')} href="#l" >L</a>
+              <a className="allLetters__single" onClick={() => setChangeM('M')} href="#m" >M</a>
+              <a className="allLetters__single" onClick={() => setChangeN('N')} href="#n" >N</a>
+              <a className="allLetters__single" onClick={() => setChangeP('P')} href="#p">P</a>
+              <a className="allLetters__single" onClick={() => setChangeR('R')} href="#r">R</a>
               <a className="allLetters__single" href="#s">S</a>
               <a className="allLetters__single" href="#t">T</a>
               <a className="allLetters__single" href="#u">U</a>
@@ -182,174 +195,168 @@ export default function RegisterPage() {
             </div>
 
         <div className="cont-select" id="a" >
-            <div className="cont-select--deployed">
-              <p className="allLetters__single">A</p>   {changeA === 'A' ? <p onClick={() => setChangeA('Ac')}>▲</p> : <p onClick={() => setChangeA('A')}>▼</p>}
-            </div>
-        {changeA === 'A'? 
-         <div className="cont-select--Allergens">
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Ácido benzoico')} type="checkbox" value="ácido benzoico" {...register("allergies")} />
-              <span>Ácido benzoico</span>
-            </label>
+          <div className="cont-select--deployed">
+            <p className="allLetters__single">A</p>   {changeA === 'A' ? <p onClick={() => setChangeA('Ac')}>▲</p> : <p onClick={() => setChangeA('A')}>▼</p>}
           </div>
-
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Almendras')} type="checkbox" value="almendras" {...register("allergies")} />
-              <span>Almendras</span>
-            </label>
-          </div>
-          
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Altramuces')} type="checkbox" value="altramuces" {...register("allergies")} />
-              <span>Altramuces</span>
-            </label>
-          </div>
-
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Anacardo')} type="checkbox" value="anacardo" {...register("allergies")} />
-              <span>Anacardo</span>
-            </label>
-          </div>
-
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Apio')} type="checkbox" value="apio" {...register("allergies")} />
-              <span>Apio</span>
-            </label>
-          </div>
-          
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Arroz')} type="checkbox" value="arroz" {...register("allergies")} />
-              <span>Arroz</span>
-            </label>
-          </div>
-
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Avellana')} type="checkbox" value="avellana" {...register("allergies")} />
-              <span>Avellana</span>
-            </label>
-          </div>
-
-        </div> : null}
-      </div>
-
-      <div className="cont-select" id="c" >
-            <div className="cont-select--deployed">
-              <p className="allLetters__single">C</p>{changeC === 'C' ? <p onClick={() => setChangeC('Cc')}>▲</p> : <p onClick={() => setChangeC('C')}>▼</p>}
-            </div>
-            {changeC === 'C' ? 
-        <div className="cont-select--Allergens">    
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Cacahuete')} type="checkbox" value="cacahuete" {...register("allergies")} />
-              <span>Cacahuete</span>
-            </label>
-          </div>
-          
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Cacao')} type="checkbox" value="cacao" {...register("allergies")} />
-              <span>Cacao</span>
-            </label>
-          </div>
-
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Castaña')} type="checkbox" value="castaña" {...register("allergies")} />
-              <span>Castaña</span>
-            </label>
-          </div>
-
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Cereales')} type="checkbox" value="cereales" {...register("allergies")} />
-              <span>Cereales</span>
-            </label>
-          </div>
-
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Coco')} type="checkbox" value="coco" {...register("allergies")} />
-              <span>Coco</span>
-            </label>
-          </div>
-
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Crustaceos')} type="checkbox" value="crustaceos" {...register("allergies")} />
-              <span>Crustaceos</span>
-            </label>
-          </div>
-        </div>: null}
-      </div>
-
-      <div className="cont-select" id="f" >
-            <div className="cont-select--deployed">
-              <p className="allLetters__single">F</p>{changeF === 'F' ? <p onClick={() => setChangeF('Fc')}>▲</p> : <p onClick={() => setChangeF('F')}>▼</p>}
-            </div>
-            {changeF === 'F' ? 
-        <div className="cont-select--Allergens">        
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Frutos de cáscara')} type="checkbox" value="Frutos de cáscara" {...register("allergies")} />
-              <span>Frutos de cáscara</span>
-            </label>
-          </div>
-        </div> : null}
-      </div>
-
-
-
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Huevo')} name="huevoAllergie" type="checkbox" value="huevo" {...register("allergies")} />
-              <span>Huevo</span>
-            </label>
-          </div>
-
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Gluten')}  name="glutenAllergie" type="checkbox" value="Gluten" {...register("allergies")} />
-              <span>Gluten</span>
-            </label>
-          </div>
-
-          
-
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Lacteos')} type="checkbox" value="Lacteos" {...register("allergies")} />
-              <span>Lacteos</span>
-            </label>
-          </div>
-
-            
-          
-            
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Pescado')} type="checkbox" value="Pescado" {...register("allergies")} />
-              <span>Pescado</span>
-            </label>
-          </div>
+          {changeA === 'A'? <div className="cont-select--Allergens">
+              {letterA.map((letA,index) => 
+                <div id="ck-button" key={index}>
+                  <label>
+                    <input onClick={() => handleCheckChildElement(letA)} type="checkbox" value={letA.toLocaleLowerCase()} {...register("allergies")} />
+                    <span>{letA}</span>
+                  </label>
+                </div>)} 
+          </div> : null}
+        </div>
         
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Soja')} type="checkbox" value="Soja" {...register("allergies")} />
-              <span>Soja</span>
-            </label>
+        <div className="cont-select" id="c" >
+          <div className="cont-select--deployed">
+            <p className="allLetters__single">C</p>{changeC === 'C' ? <p onClick={() => setChangeC('Cc')}>▲</p> : <p onClick={() => setChangeC('C')}>▼</p>}
           </div>
-         
-          
+          {changeC === 'C' ?  <div className="cont-select--Allergens">
+              {letterC.map((letC,index) => 
+                <div id="ck-button" key={index}>
+                  <label>
+                   <input onClick={() => handleCheckChildElement(letC)} type="checkbox" value={letC.toLocaleLowerCase()} {...register("allergies")} />
+                    <span>{letC}</span>
+                 </label>
+              </div>)} 
+          </div> : null}
+        </div>
 
+        <div className="cont-select" id="f" >
+          <div className="cont-select--deployed">
+            <p className="allLetters__single">F</p>{changeF === 'F' ? <p onClick={() => setChangeF('Fc')}>▲</p> : <p onClick={() => setChangeF('F')}>▼</p>}
+          </div>
+          {changeF === 'F' ? <div className="cont-select--Allergens">
+              {letterF.map((letF,index) => 
+                <div id="ck-button" key={index}>
+                  <label>
+                   <input onClick={() => handleCheckChildElement(letF)} type="checkbox" value={letF.toLocaleLowerCase()} {...register("allergies")} />
+                    <span>{letF}</span>
+                 </label>
+              </div>)}
+          </div> : null}
+        </div>
+        
+      
+        <div className="cont-select" id="g" >
+            <div className="cont-select--deployed">
+              <p className="allLetters__single">G</p>{changeG === 'G' ? <p onClick={() => setChangeG('Gc')}>▲</p> : <p onClick={() => setChangeG('G')}>▼</p>}
+            </div>
+            {changeG === 'G' ? <div className="cont-select--Allergens">
+              {letterG.map((letG,index) => 
+                <div id="ck-button" key={index}>
+                  <label>
+                   <input onClick={() => handleCheckChildElement(letG)} type="checkbox" value={letG.toLocaleLowerCase()} {...register("allergies")} />
+                    <span>{letG}</span>
+                 </label>
+              </div>)}
+            </div> : null}
+        </div>
+
+        <div className="cont-select" id="h" >
+            <div className="cont-select--deployed">
+              <p className="allLetters__single">H</p>{changeH === 'H' ? <p onClick={() => setChangeH('Hc')}>▲</p> : <p onClick={() => setChangeH('H')}>▼</p>}
+            </div>
+            {changeH === 'H' ? <div className="cont-select--Allergens"> 
+              <div id="ck-button">
+                <label>
+                  <input onClick={() => handleCheckChildElement('Huevo')} type="checkbox" value="huevo" {...register("allergies")} />
+                  <span>Huevo</span>
+                </label>
+              </div>
+            </div> : null}
+        </div>
+
+        <div className="cont-select" id="k" >
+            <div className="cont-select--deployed">
+              <p className="allLetters__single">K</p>{changeK === 'K' ? <p onClick={() => setChangeK('Kc')}>▲</p> : <p onClick={() => setChangeK('K')}>▼</p>}
+            </div>
+            {changeK === 'K' ? <div className="cont-select--Allergens"> 
+              <div id="ck-button">
+                <label>
+                  <input onClick={() => handleCheckChildElement('Kiwi')}  type="checkbox" value="kiwi" {...register("allergies")} />
+                  <span>Kiwi</span>
+                </label>
+              </div>
+            </div> : null}
+        </div>
+
+        <div className="cont-select" id="l" >
+            <div className="cont-select--deployed">
+              <p className="allLetters__single">L</p>{changeL === 'L' ? <p onClick={() => setChangeL('Lc')}>▲</p> : <p onClick={() => setChangeL('L')}>▼</p>}
+            </div>
+            {changeL === 'L' ? <div className="cont-select--Allergens"> 
+                {letterL.map((letL,index) => 
+                  <div id="ck-button" key={index}>
+                    <label>
+                      <input onClick={() => handleCheckChildElement(letL)} type="checkbox" value={letL.toLocaleLowerCase()} {...register("allergies")} />
+                      <span>{letL}</span>
+                    </label>
+                </div>)}
+            </div> : null}
+        </div>
           
+        <div className="cont-select" id="m" >
+            <div className="cont-select--deployed">
+              <p className="allLetters__single">M</p>{changeM === 'M' ? <p onClick={() => setChangeM('Mc')}>▲</p> : <p onClick={() => setChangeM('M')}>▼</p>}
+            </div>
+            {changeM === 'M' ? <div className="cont-select--Allergens"> 
+                {letterM.map((letM,index) => 
+                  <div id="ck-button" key={index}>
+                    <label>
+                      <input onClick={() => handleCheckChildElement(letM)} type="checkbox" value={letM.toLocaleLowerCase()} {...register("allergies")} />
+                      <span>{letM}</span>
+                    </label>
+                </div>)}
+            </div> : null}
+        </div>
          
+
+        <div className="cont-select" id="n" >
+            <div className="cont-select--deployed">
+              <p className="allLetters__single">N</p>{changeN === 'N' ? <p onClick={() => setChangeN('Nc')}>▲</p> : <p onClick={() => setChangeN('N')}>▼</p>}
+            </div>
+            {changeN === 'N' ? <div className="cont-select--Allergens">
+              <div id="ck-button">
+                <label>
+                  <input onClick={() => handleCheckChildElement('Nueces')} type="checkbox" value="nueces" {...register("allergies")} />
+                  <span>Nueces</span>
+                </label>
+            </div>
+            </div> : null}
+        </div>
+
+        <div className="cont-select" id="p" >
+            <div className="cont-select--deployed">
+              <p className="allLetters__single">P</p>{changeP === 'P' ? <p onClick={() => setChangeP('Pc')}>▲</p> : <p onClick={() => setChangeP('P')}>▼</p>}
+            </div>
+            {changeP === 'P' ? <div className="cont-select--Allergens">
+            {letterP.map((letP,index) => 
+                  <div id="ck-button" key={index}>
+                    <label>
+                      <input onClick={() => handleCheckChildElement(letP)} type="checkbox" value={letP.toLocaleLowerCase()} {...register("allergies")} />
+                      <span>{letP}</span>
+                    </label>
+                </div>)}
+            </div> : null}
+        </div>
+
+        <div className="cont-select" id="r" >
+            <div className="cont-select--deployed">
+              <p className="allLetters__single">R</p>{changeR === 'R' ? <p onClick={() => setChangeR('Rc')}>▲</p> : <p onClick={() => setChangeR('R')}>▼</p>}
+            </div>
+            {changeR === 'R' ? <div className="cont-select--Allergens">
+              <div id="ck-button">
+                <label>
+                  <input onClick={() => handleCheckChildElement('Rosaceas')} type="checkbox" value="rosaceas" {...register("allergies")} />
+                  <span>Rosaceas</span>
+                </label>
+            </div>
+            </div> : null}
+        </div>
+
           <div id="ck-button">
             <label>
               <input onClick={() => handleCheckChildElement('Mostaza')} type="checkbox" value="Mostaza" {...register("allergies")} />
