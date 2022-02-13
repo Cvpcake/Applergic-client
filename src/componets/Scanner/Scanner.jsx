@@ -1,6 +1,6 @@
 import React, {useState, useContext} from "react";
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
-import Results from '../Results/ResultsComp';
+import ResultsComp from '../Results/ResultsComp';
 import "./Scanner.scss";
 import { BarcodeContext } from '../../shared/contexts/BarcodeContext'
 
@@ -15,6 +15,8 @@ function Scanner({ mode }) {
   };
 
   return (
+    <div>
+    {data === "" ? (
     <div className="scanner-card">
       <h1 className="Escaneado">Escaneando...</h1>
       {mode === 1 ? (
@@ -60,8 +62,10 @@ function Scanner({ mode }) {
       )}
 
       <button onClick={dismissQrReader}>Empezar escaneo</button>
-        
-      <Results data={data} dismissQrReader={dismissQrReader}/>
+    </div>
+    ) : (
+        <ResultsComp data={data} dismissQrReader={dismissQrReader}/>
+      )}
     </div>
   );
 }
