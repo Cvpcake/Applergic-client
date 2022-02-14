@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import './Home.scss';
+import { DropdownBtn }  from '../../componets/DropdownBtn/DropdownBtn';
 
 const Home = () => {
   return (
     <div className="home-container">
+      <DropdownBtn />
       <img src="logoHome" alt="" />
       <h1>Applergic</h1>
       <p>Mi guía alimentaria</p>
