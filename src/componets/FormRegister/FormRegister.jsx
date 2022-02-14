@@ -6,13 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Scrollbar } from "swiper";
 import { useNavigate } from 'react-router-dom';
 
-import {
-  SlideNextButton1,
-  SlideNextButton2,
-  SlideNextButton3,
-  SlidePrevButton,
-} from "../SlideNextButton/SlideNextButton";
-import "swiper/css";
+import {SlideNextButton, SlidePrevButton,} from "../SlideNextButton/SlideNextButton";
+// import "swiper/css";
 
 
 export default function RegisterPage() {
@@ -29,7 +24,10 @@ export default function RegisterPage() {
    const letterG = ['Gelatina','Gisante', 'Glucosa', 'Gluten']
    const letterL = ['Lactosa','Leche', 'Legumbres', 'Lenteja','Lino','LTP']
    const letterM = ['Maiz','Marisco', 'Melocotón', 'Molusco','Mostaza']
-   const letterP = ['Pescado','Piñones', 'Pistachos', 'Plátano']     
+   const letterP = ['Pescado','Piñones', 'Pistachos', 'Plátano']
+   const letterS = ['Sésamo', 'Soja', 'Sorbitol','Sulfitos']
+   const letterT = ['Tomate','Trazas','Trigo']
+   const letterV = ['Vitamina D','Vitamina E']
 
 
           //----------STATES ALLERGENS----------
@@ -44,6 +42,11 @@ export default function RegisterPage() {
   const [changeN, setChangeN] = useState('');
   const [changeP, setChangeP] = useState('');
   const [changeR, setChangeR] = useState('');
+  const [changeS, setChangeS] = useState('');
+  const [changeT, setChangeT] = useState('');
+  const [changeU, setChangeU] = useState('');
+  const [changeV, setChangeV] = useState('');
+  const [changeY, setChangeY] = useState('');
 
 
   let navigate = useNavigate();
@@ -130,7 +133,7 @@ export default function RegisterPage() {
               //    pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
             })}
           />
-          <SlideNextButton1 />
+          <SlideNextButton props="Guardar perfil" />
         </SwiperSlide>
 
             {/* --------------- FORM CONTACT EMERGENCI USER --------------- */}
@@ -168,13 +171,20 @@ export default function RegisterPage() {
             defaultValue="Mutua? idk xd"
             {...register("SecureCompany", { required: true })}
           />
-          <SlideNextButton2 s/>
+          <SlideNextButton props="Guardar emergencia" />
         </SwiperSlide>
 
               {/* ----------------FORM SELECT ALLERGENS-------------------- */}
 
         <SwiperSlide>
-            
+          <div className="head">
+          <SlidePrevButton className="head--back" props="◄ Volver"/><p className="head--p">3 de 4</p>
+          </div>
+          <div className="cont-text">
+            <h3 className="cont-text--h3">Ahora selecciona tus alergias e intolerancias.</h3>
+            <p className="cont-text--p">Los elementos marcados serán identificados en tus busquedas como peligrosos para ti</p>
+          </div>
+          
             <div className="allLetters">
               <a className="allLetters__single" onClick={() => setChangeA('A')} href="#a" >A</a>
               <a className="allLetters__single" onClick={() => setChangeC('C')} href="#c" >C</a>
@@ -185,18 +195,18 @@ export default function RegisterPage() {
               <a className="allLetters__single" onClick={() => setChangeL('L')} href="#l" >L</a>
               <a className="allLetters__single" onClick={() => setChangeM('M')} href="#m" >M</a>
               <a className="allLetters__single" onClick={() => setChangeN('N')} href="#n" >N</a>
-              <a className="allLetters__single" onClick={() => setChangeP('P')} href="#p">P</a>
-              <a className="allLetters__single" onClick={() => setChangeR('R')} href="#r">R</a>
-              <a className="allLetters__single" href="#s">S</a>
-              <a className="allLetters__single" href="#t">T</a>
-              <a className="allLetters__single" href="#u">U</a>
-              <a className="allLetters__single" href="#v">V</a>
-              <a className="allLetters__single" href="#y">Y</a>
+              <a className="allLetters__single" onClick={() => setChangeP('P')} href="#p" >P</a>
+              <a className="allLetters__single" onClick={() => setChangeR('R')} href="#r" >R</a>
+              <a className="allLetters__single" onClick={() => setChangeS('S')} href="#s" >S</a>
+              <a className="allLetters__single" onClick={() => setChangeT('T')} href="#t" >T</a>
+              <a className="allLetters__single" onClick={() => setChangeU('U')} href="#u" >U</a>
+              <a className="allLetters__single" onClick={() => setChangeV('V')} href="#v" >V</a>
+              <a className="allLetters__single" onClick={() => setChangeY('Y')} href="#y" >Y</a>
             </div>
 
         <div className="cont-select" id="a" >
           <div className="cont-select--deployed">
-            <p className="allLetters__single">A</p>   {changeA === 'A' ? <p onClick={() => setChangeA('Ac')}>▲</p> : <p onClick={() => setChangeA('A')}>▼</p>}
+            <p className="allLetters__single" id="classA" >A</p>   {changeA === 'A' ? <p className="arrowTop" onClick={() => setChangeA('Ac')}>▲</p> : <p className="arrowBot" onClick={() => setChangeA('A')}>▼</p>}
           </div>
           {changeA === 'A'? <div className="cont-select--Allergens">
               {letterA.map((letA,index) => 
@@ -211,7 +221,7 @@ export default function RegisterPage() {
         
         <div className="cont-select" id="c" >
           <div className="cont-select--deployed">
-            <p className="allLetters__single">C</p>{changeC === 'C' ? <p onClick={() => setChangeC('Cc')}>▲</p> : <p onClick={() => setChangeC('C')}>▼</p>}
+            <p className="allLetters__single">C</p>{changeC === 'C' ? <p className="arrowTop" onClick={() => setChangeC('Cc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeC('C')}>▼</p>}
           </div>
           {changeC === 'C' ?  <div className="cont-select--Allergens">
               {letterC.map((letC,index) => 
@@ -226,7 +236,7 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="f" >
           <div className="cont-select--deployed">
-            <p className="allLetters__single">F</p>{changeF === 'F' ? <p onClick={() => setChangeF('Fc')}>▲</p> : <p onClick={() => setChangeF('F')}>▼</p>}
+            <p className="allLetters__single">F</p>{changeF === 'F' ? <p className="arrowTop" onClick={() => setChangeF('Fc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeF('F')}>▼</p>}
           </div>
           {changeF === 'F' ? <div className="cont-select--Allergens">
               {letterF.map((letF,index) => 
@@ -242,7 +252,7 @@ export default function RegisterPage() {
       
         <div className="cont-select" id="g" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">G</p>{changeG === 'G' ? <p onClick={() => setChangeG('Gc')}>▲</p> : <p onClick={() => setChangeG('G')}>▼</p>}
+              <p className="allLetters__single">G</p>{changeG === 'G' ? <p className="arrowTop" onClick={() => setChangeG('Gc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeG('G')}>▼</p>}
             </div>
             {changeG === 'G' ? <div className="cont-select--Allergens">
               {letterG.map((letG,index) => 
@@ -257,7 +267,7 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="h" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">H</p>{changeH === 'H' ? <p onClick={() => setChangeH('Hc')}>▲</p> : <p onClick={() => setChangeH('H')}>▼</p>}
+              <p className="allLetters__single">H</p>{changeH === 'H' ? <p className="arrowTop" onClick={() => setChangeH('Hc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeH('H')}>▼</p>}
             </div>
             {changeH === 'H' ? <div className="cont-select--Allergens"> 
               <div id="ck-button">
@@ -271,7 +281,7 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="k" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">K</p>{changeK === 'K' ? <p onClick={() => setChangeK('Kc')}>▲</p> : <p onClick={() => setChangeK('K')}>▼</p>}
+              <p className="allLetters__single">K</p>{changeK === 'K' ? <p className="arrowTop" onClick={() => setChangeK('Kc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeK('K')}>▼</p>}
             </div>
             {changeK === 'K' ? <div className="cont-select--Allergens"> 
               <div id="ck-button">
@@ -285,7 +295,7 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="l" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">L</p>{changeL === 'L' ? <p onClick={() => setChangeL('Lc')}>▲</p> : <p onClick={() => setChangeL('L')}>▼</p>}
+              <p className="allLetters__single">L</p>{changeL === 'L' ? <p className="arrowTop" onClick={() => setChangeL('Lc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeL('L')}>▼</p>}
             </div>
             {changeL === 'L' ? <div className="cont-select--Allergens"> 
                 {letterL.map((letL,index) => 
@@ -300,7 +310,7 @@ export default function RegisterPage() {
           
         <div className="cont-select" id="m" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">M</p>{changeM === 'M' ? <p onClick={() => setChangeM('Mc')}>▲</p> : <p onClick={() => setChangeM('M')}>▼</p>}
+              <p className="allLetters__single">M</p>{changeM === 'M' ? <p className="arrowTop" onClick={() => setChangeM('Mc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeM('M')}>▼</p>}
             </div>
             {changeM === 'M' ? <div className="cont-select--Allergens"> 
                 {letterM.map((letM,index) => 
@@ -316,7 +326,7 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="n" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">N</p>{changeN === 'N' ? <p onClick={() => setChangeN('Nc')}>▲</p> : <p onClick={() => setChangeN('N')}>▼</p>}
+              <p className="allLetters__single">N</p>{changeN === 'N' ? <p className="arrowTop" onClick={() => setChangeN('Nc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeN('N')}>▼</p>}
             </div>
             {changeN === 'N' ? <div className="cont-select--Allergens">
               <div id="ck-button">
@@ -330,7 +340,7 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="p" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">P</p>{changeP === 'P' ? <p onClick={() => setChangeP('Pc')}>▲</p> : <p onClick={() => setChangeP('P')}>▼</p>}
+              <p className="allLetters__single">P</p>{changeP === 'P' ? <p className="arrowTop" onClick={() => setChangeP('Pc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeP('P')}>▼</p>}
             </div>
             {changeP === 'P' ? <div className="cont-select--Allergens">
             {letterP.map((letP,index) => 
@@ -345,7 +355,7 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="r" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">R</p>{changeR === 'R' ? <p onClick={() => setChangeR('Rc')}>▲</p> : <p onClick={() => setChangeR('R')}>▼</p>}
+              <p className="allLetters__single">R</p>{changeR === 'R' ? <p className="arrowTop" onClick={() => setChangeR('Rc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeR('R')}>▼</p>}
             </div>
             {changeR === 'R' ? <div className="cont-select--Allergens">
               <div id="ck-button">
@@ -353,55 +363,92 @@ export default function RegisterPage() {
                   <input onClick={() => handleCheckChildElement('Rosaceas')} type="checkbox" value="rosaceas" {...register("allergies")} />
                   <span>Rosaceas</span>
                 </label>
-            </div>
+              </div>
             </div> : null}
         </div>
 
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Mostaza')} type="checkbox" value="Mostaza" {...register("allergies")} />
-              <span>Mostaza</span>
-            </label>
-          </div>
-         
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Sésamo')} type="checkbox" value="Sésamo" {...register("allergies")} />
-              <span>Sésamo</span>
-            </label>
-          </div>
-        
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Sulfitos')} type="checkbox" value="Sulfitos" {...register("allergies")} />
-              <span>Sulfitos</span>
-            </label>
-          </div>
-            
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Moluscos')} type="checkbox" value="Moluscos" {...register("allergies")} />
-              <span>Moluscos</span>
-            </label>
-          </div>
-     
-          
+        <div className="cont-select" id="s" >
+            <div className="cont-select--deployed">
+              <p className="allLetters__single">S</p>{changeS === 'S' ? <p className="arrowTop" onClick={() => setChangeS('Sc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeS('S')}>▼</p>}
+            </div>
+            {changeS === 'S' ? <div className="cont-select--Allergens">
+            {letterS.map((letS,index) => 
+                  <div id="ck-button" key={index}>
+                    <label>
+                      <input onClick={() => handleCheckChildElement(letS)} type="checkbox" value={letS.toLocaleLowerCase()} {...register("allergies")} />
+                      <span>{letS}</span>
+                    </label>
+                  </div>)}
+            </div> : null}
+        </div>
 
-          <div id="ck-button">
-            <label>
-              <input onClick={() => handleCheckChildElement('Setas')} type="checkbox" value="Setas" {...register("allergies")} />
-              <span>Setas</span>
-            </label>
-          </div>
+        <div className="cont-select" id="t" >
+            <div className="cont-select--deployed">
+              <p className="allLetters__single">T</p>{changeT === 'T' ? <p className="arrowTop" onClick={() => setChangeT('Tc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeT('T')}>▼</p>}
+            </div>
+            {changeT === 'T' ? <div className="cont-select--Allergens">
+            {letterT.map((letT,index) => 
+                  <div id="ck-button" key={index}>
+                    <label>
+                      <input onClick={() => handleCheckChildElement(letT)} type="checkbox" value={letT.toLocaleLowerCase()} {...register("allergies")} />
+                      <span>{letT}</span>
+                    </label>
+                  </div>)}
+            </div> : null}
+        </div>
+
+        <div className="cont-select" id="u" >
+            <div className="cont-select--deployed">
+              <p className="allLetters__single">U</p>{changeU === 'U' ? <p className="arrowTop" onClick={() => setChangeU('Uc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeU('U')}>▼</p>}
+            </div>
+            {changeU === 'U' ? <div className="cont-select--Allergens">
+              <div id="ck-button">
+                <label>
+                  <input onClick={() => handleCheckChildElement('Uva')} type="checkbox" value="uva" {...register("allergies")} />
+                  <span>Uva</span>
+                </label>
+              </div>
+            </div> : null}
+        </div>
+
+        <div className="cont-select" id="v" >
+            <div className="cont-select--deployed">
+              <p className="allLetters__single">V</p>{changeV === 'V' ? <p className="arrowTop" onClick={() => setChangeV('Vc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeV('V')}>▼</p>}
+            </div>
+            {changeV === 'V' ? <div className="cont-select--Allergens">
+            {letterV.map((letV,index) => 
+                  <div id="ck-button" key={index}>
+                    <label>
+                      <input onClick={() => handleCheckChildElement(letV)} type="checkbox" value={letV.toLocaleLowerCase()} {...register("allergies")} />
+                      <span>{letV}</span>
+                    </label>
+                  </div>)}
+            </div> : null}
+        </div>
     
-          <SlideNextButton3 />
+        <div className="cont-select" id="y" >
+            <div className="cont-select--deployed">
+              <p className="allLetters__single">U</p>
+              {changeY === 'Y' ? <p className="arrowTop" onClick={() => setChangeY('Yc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeY('Y')}>▼</p>}
+            </div>
+            {changeY === 'Y' ? <div className="cont-select--Allergens">
+              <div id="ck-button">
+                <label>
+                  <input onClick={() => handleCheckChildElement('Yuca')} type="checkbox" value="yuca" {...register("allergies")} />
+                  <span>Yuca</span>
+                </label>
+              </div>
+            </div> : null}
+        </div>
+    
+          <SlideNextButton className="saveAllergens" props="Guardar alergias" />
         </SwiperSlide>
 
           {/* ----------------- CONFIRM ALLERGENS & SEND REGISTER -------------------- */}
 
         <SwiperSlide>
           <h2>CONFIRMAR TU SELECCIÓN</h2>
-          <SlidePrevButton />
+          <SlidePrevButton props="Añadir nuevos" />
 
           <ul className="result-allergies">
           {interruptor ? 

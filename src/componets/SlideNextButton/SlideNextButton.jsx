@@ -1,31 +1,17 @@
 import { useSwiper } from "swiper/react";
 
-export const SlideNextButton1 = () =>{
+export const SlideNextButton = ({props,className}) =>{
     const swiper = useSwiper();
         return (
-            <button type="button" onClick={() => swiper.slideNext()}>Guardar perfil</button>               
+            <button className={className} type="button" onClick={() => swiper.slideNext()}>{props}</button>               
       );
 }
 
-export const SlideNextButton2 = () =>{
-    const swiper = useSwiper();
-        return (
-            <button type="button" onClick={() => swiper.slideNext()}>Guardar emergencia</button>               
-      );
-}
-
-export const SlideNextButton3 = () =>{
-    const swiper = useSwiper();
-        return (
-            <button type="button" onClick={() => swiper.slideNext()}>Guardar alergias</button>               
-      );
-}
-
-export const SlidePrevButton = ({counter, setCounter}) =>{
+export const SlidePrevButton = ({props,className}) =>{
     const swiper = useSwiper();
        
 return (
-            <button type="button" onClick={() => swiper.slidePrev()} >Añadir nuevos</button>
+            <button className={className} type="button" onClick={() => swiper.slidePrev()} >{props}</button>
       )
 
 }
