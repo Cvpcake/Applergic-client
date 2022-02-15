@@ -42,9 +42,9 @@
  }
  
  #ck-button label input {
-     //comentando esto no se redirige arriba de la pagina
-     position:fixed; 
-     top:-20px;
+     position:fixed;
+     visibility: hidden;
+    //  top:-20px; esto redireccionaba la pagina arriba
  }
  
  #ck-button input:checked + span {
@@ -70,7 +70,7 @@
 .cont-text{
     display:flex;
     align-items:center;
-    width:80%;
+    width:85%;
     flex-direction:column;
     height: 18vh;
     &--h3{
@@ -81,7 +81,6 @@
     &--p{
         margin:30px 0px 10px;
         padding:0;
-        width:90%;
         color: #888686;
     }
 }
@@ -123,6 +122,68 @@
         margin-top: 3vh;
         border-radius: 6px;
  }
+
+.conf-aller{
+    display:flex;
+    flex-direction: column;
+    width:85%;
+    padding:0px 0px;
+    max-height: 100vh;
+
+    &--p{
+        text-align: left;
+    }
+    &--result{
+        display:flex;
+        flex-wrap: wrap;
+        align-items: start;
+        padding: 0px 0px;
+    }
+    &--select{
+        list-style: none;
+        background:red;
+        color:#fff;
+        border-radius:20px;
+        padding: 6px 10px;
+        margin: 4px;
+    }
+    &--addNew{
+        background-color:transparent;
+        border: none;
+        color: #5e5e5e;
+        border:1px solid #5e5e5e;
+        border-radius:20px;
+        padding: 6px 0px;
+        font-weight:bold;
+        width: 40%;
+    }
+}
+
+//  .result-allergies{
+//     display:flex;
+//     flex-wrap: wrap;
+//     justify-content: start;
+//  }
+
+
+//  .select-aller{
+//     list-style: none;
+//     background:red;
+//     color:#fff;
+//     border-radius:20px;
+//     padding: 6px 10px;
+//     margin: 4px;
+//  }
+
+//  .addNew{
+//      background-color:transparent;
+//     border: none;
+//     color: #5e5e5e;
+//     border:1px solid #5e5e5e;
+//     border-radius:20px;
+//     padding: 6px 10px;
+//     font-weight:bold;
+//  }
 
 
     // #ck-button input:checked + #classA {

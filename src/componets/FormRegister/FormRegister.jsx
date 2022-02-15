@@ -447,18 +447,22 @@ export default function RegisterPage() {
           {/* ----------------- CONFIRM ALLERGENS & SEND REGISTER -------------------- */}
 
         <SwiperSlide>
-          <h2>CONFIRMAR TU SELECCIÓN</h2>
-          <SlidePrevButton props="Añadir nuevos" />
-
-          <ul className="result-allergies">
-          {interruptor ? 
-              userAllergies.map((allergie, index ) => {return <li key={index}>{allergie}</li>}) 
+          <div className="cont-text">
+            <h3 className="cont-text--h3">Confirma tu seleccion.</h3>
+            <p className="cont-text--p">A continuación te resumimos los alimentos registrados como peligrosos para ti</p>
+          </div>
+          <div className="conf-aller" >
+            <p className="conf-aller--p">Si quieres modificar tu selección o añadir más alergenos pulsa en añadir uno nuevo</p>
+            <ul className="conf-aller--result">
+            {interruptor ? 
+              userAllergies.map((allergie, index ) => {return <li className="conf-aller--select" key={index}>{allergie}</li>}) 
                 : 
-              userAllergies.map((allergie, index ) => {return <li key={index}>{allergie}</li>;})
-            }
-
-          </ul>
-
+              userAllergies.map((allergie, index ) => {return <li className="conf-aller--select" key={index}>{allergie}</li>;})
+              }
+            </ul>
+            <SlidePrevButton className="conf-aller--addNew" props="Añadir nuevos" />
+          </div>
+          
           <button type="submit">CONFIRMAR</button>
         </SwiperSlide>
 
