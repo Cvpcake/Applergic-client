@@ -19,7 +19,7 @@ export default function RegisterPage() {
 
           //----------ARRAYS ALLERGENS-----------
    const letterA = ['Ácido benzoico','Almendras','Altramuces','Anacardo','Api','Arroz','Avellana']
-   const letterC = ['Cacahuete','Cacao', 'Castaña', 'Cereales', 'Coco', 'Crutaceo']
+   const letterC = ['Cacahuete','Cacao', 'Castaña', 'Cereales', 'Coco', 'Crustaceos']
    const letterF = ['Fenilalanina','Fibras', 'Fresa', 'Fructosa', 'Frutas', 'Frutos de cáscara', 'Frutos rojos']
    const letterG = ['Gelatina','Gisante', 'Glucosa', 'Gluten']
    const letterL = ['Lactosa','Leche', 'Legumbres', 'Lenteja','Lino','LTP']
@@ -180,9 +180,9 @@ export default function RegisterPage() {
           <div className="head">
           <SlidePrevButton className="head--back" props="◄ Volver"/><p className="head--p">3 de 4</p>
           </div>
-          <div className="cont-text">
-            <h3 className="cont-text--h3">Ahora selecciona tus alergias e intolerancias.</h3>
-            <p className="cont-text--p">Los elementos marcados serán identificados en tus busquedas como peligrosos para ti</p>
+          <div className="cont-text3">
+            <h3 className="cont-text3--h3">Ahora selecciona tus alergias e intolerancias.</h3>
+            <p className="cont-text3--p">Los elementos marcados serán identificados en tus busquedas como peligrosos para ti</p>
           </div>
           
             <div className="allLetters">
@@ -441,18 +441,18 @@ export default function RegisterPage() {
             </div> : null}
         </div>
     
-          <SlideNextButton className="saveAllergens" props="Guardar alergias" />
+          <SlideNextButton className="saveAllergens" props="Guardar alergias"></SlideNextButton>
         </SwiperSlide>
 
           {/* ----------------- CONFIRM ALLERGENS & SEND REGISTER -------------------- */}
 
         <SwiperSlide>
-          <div className="cont-text">
-            <h3 className="cont-text--h3">Confirma tu seleccion.</h3>
-            <p className="cont-text--p">A continuación te resumimos los alimentos registrados como peligrosos para ti</p>
+          <div className="cont-text4" id="startSe">
+            <h3 className="cont-text4--h3">Confirma tu seleccion.</h3>
+            <p className="cont-text4--p">A continuación te resumimos los alimentos registrados como peligrosos para ti</p>
           </div>
           <div className="conf-aller" >
-            <p className="conf-aller--p">Si quieres modificar tu selección o añadir más alergenos pulsa en añadir uno nuevo</p>
+            <p className="conf-aller--p">Si quieres modificar tu selección o añadir más alergenos pulsa en añadir nuevos</p>
             <ul className="conf-aller--result">
             {interruptor ? 
               userAllergies.map((allergie, index ) => {return <li className="conf-aller--select" key={index}>{allergie}</li>}) 
@@ -463,7 +463,7 @@ export default function RegisterPage() {
             <SlidePrevButton className="conf-aller--addNew" props="Añadir nuevos" />
           </div>
           
-          <button type="submit">CONFIRMAR</button>
+          <button className="btn-submit" type="submit">CONFIRMAR</button>
         </SwiperSlide>
 
       </Swiper>
