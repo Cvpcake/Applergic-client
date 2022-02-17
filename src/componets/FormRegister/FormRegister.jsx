@@ -441,13 +441,13 @@ export default function RegisterPage() {
             </div> : null}
         </div>
     
-          <SlideNextButton className="saveAllergens" props="Guardar alergias"></SlideNextButton>
+          <SlideNextButton className="saveAllergens" href="#startSe" props="Guardar alergias"/>
         </SwiperSlide>
 
           {/* ----------------- CONFIRM ALLERGENS & SEND REGISTER -------------------- */}
 
-        <SwiperSlide>
-          <div className="cont-text4" id="startSe">
+        <SwiperSlide className="slideFinal" id="startSe">
+          <div className="cont-text4">
             <h3 className="cont-text4--h3">Confirma tu seleccion.</h3>
             <p className="cont-text4--p">A continuación te resumimos los alimentos registrados como peligrosos para ti</p>
           </div>
