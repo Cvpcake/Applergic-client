@@ -4,7 +4,7 @@
 
 .swiper-slide{
     justify-content:start !important;
-    min-height: 100vh !important;
+    
 }
 
 .cont-select{
@@ -125,6 +125,10 @@
     margin-right: 15px;
  }
 
+ .slideFinal{
+    min-height: 100vh !important;
+ }
+
  .saveAllergens{
         background-color:rgb(0, 155, 207);
         border: none;
@@ -186,5 +190,6 @@
     width:85%;
     height:6vh;
     margin: auto;
+    margin-bottom: 15vh;
     border-radius: 6px; 
 }

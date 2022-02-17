@@ -1,9 +1,9 @@
 import { useSwiper } from "swiper/react";
 
-export const SlideNextButton = ({props,className}) =>{
+export const SlideNextButton = ({props,className,href}) =>{
     const swiper = useSwiper();
         return (
-            <button className={className} type="button" onClick={() => swiper.slideNext()}>{props}</button>               
+            <a href={href} className={className}> <button type="button" onClick={() => swiper.slideNext()}>{props}</button></a>              
       );
 }
 
