@@ -4,7 +4,7 @@ import { API } from "../../shared/services/api";
 import "./FormRegister.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Scrollbar } from "swiper";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 
 import {SlideNextButton, SlidePrevButton,} from "../SlideNextButton/SlideNextButton";
 // import "swiper/css";
@@ -70,15 +70,16 @@ export default function RegisterPage() {
         setInterruptor(true)
     }
 
+          //---------FUNCTION ADD AND DELETE CHECKED ALLERGENS-------
     if(!userAllergies.includes(event)){
-     console.log('añade', userAllergies)
-    const newAllergies = [ ...userAllergies, event ];
-    setUserAllergies(newAllergies);
-  } else {
-    console.log('elimina', userAllergies)
-    let pos = userAllergies.indexOf(event);
-    userAllergies.splice(pos, 1);
-  }
+      console.log('añade', userAllergies)
+      const newAllergies = [ ...userAllergies, event ];
+      setUserAllergies(newAllergies);
+    } else {
+      console.log('elimina', userAllergies)
+      let pos = userAllergies.indexOf(event);
+      userAllergies.splice(pos, 1);
+    }
   } 
 
   return (
@@ -98,15 +99,22 @@ export default function RegisterPage() {
             {/* ------------------ FORM DATA USER ----------------------*/}
 
         <SwiperSlide>
-          <label htmlFor="name">Nombre</label>
-          <input
+        <div className="head">
+          <Link className="head--back" to="/Login">◄ Volver</Link><p className="head--p">1 de 4</p>
+          </div>
+          <div className="cont-text3">
+            <h2 className="cont-text3--h3">Dinos quien eres.</h2>
+          </div>
+        <div className="contInputEmer">
+          <label htmlFor="name"></label>
+          <input className="EmerName"
             id="name"
             defaultValue="Luisa María de las Nieves"
             {...register("name", { required: true })}
           />
 
-          <label htmlFor="email">Email</label>
-          <input
+          <label htmlFor="email"></label>
+          <input className="EmerContact"
             id="email"
             defaultValue="luisam@delasnieves.com"
             {...register("email", {
@@ -115,15 +123,15 @@ export default function RegisterPage() {
             })}
           />
 
-          <label htmlFor="phone">Movil</label>
-          <input
+          <label htmlFor="phone"></label>
+          <input className="EmerContact"
             id="phone"
             defaultValue="605605605"
             {...register("phone", { required: true })}
           />
 
-          <label htmlFor="password">Contraseña</label>
-          <input
+          <label htmlFor="password"></label>
+          <input className="EmerContact"
             name="password"
             id="password"
             type="password"
@@ -133,55 +141,65 @@ export default function RegisterPage() {
               //    pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
             })}
           />
-          <SlideNextButton props="Guardar perfil" />
+          </div>
+          <SlideNextButton props="Guardar perfil" className1="saveAllerAncor" className="saveAllergens"/>
         </SwiperSlide>
 
-            {/* --------------- FORM CONTACT EMERGENCI USER --------------- */}
+            {/* --------------- PAGE FORM CONTACT EMERGENCI USER --------------- */}
 
         <SwiperSlide>
-          <label htmlFor="nameContact">Nombre Completo de tu contacto</label>
-          <input
+        <div className="head">
+          <SlidePrevButton className="head--back" props="◄ Volver"/><p className="head--p">2 de 4</p>
+          </div>
+          <div className="cont-text3">
+            <h2 className="cont-text3--h3">Vamos a añadir tu contacto en caso de emergencia</h2>
+            <p className="cont-text3--p">Nos pondremos en contacto con tu persona de confianza y/o compañia de seguros en caso de emergencia.</p>
+          </div>
+
+          <div className="contInputEmer">
+          <label htmlFor="nameContact"></label>
+          <input className="EmerName" placeholder="Nombre completo de tu contacto"
             id="nameContact"
             defaultValue="Jorge de las Nieves"
-            {...register("nameContact", { required: true })}
+            {...register("nameContact")}
           />
 
-          <label htmlFor="emailContact">Email del contacto</label>
-          <input
+          <label htmlFor="emailContact"></label>
+          <input className="EmerContact" placeholder="Dirección e-mail"
             id="emailContact"
             defaultValue="jorge@delasnieves.com"
             {...register("emailContact", {
-              required: true,
               pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
             })}
           />
 
-          <label htmlFor="emergencyContact">Movil del contacto</label>
-          <input
+          <label htmlFor="emergencyContact"></label>
+          <input className="EmerContact" placeholder="Móvil"
             id="emergencyContact"
             defaultValue="605605605"
-            {...register("emergencyContact", { required: true })}
+            {...register("emergencyContact")}
           />
 
-          <label htmlFor="SecureCompany">
-            Compañía de Seguro del contacto/ Nº de Póliza
-          </label>
-          <input
+          <label htmlFor="SecureCompany"></label>
+          <input className="EmerContact" placeholder="Compañia de Seguros / Nº Póliza"
             id="SecureCompany"
             defaultValue="Mutua? idk xd"
-            {...register("SecureCompany", { required: true })}
+            {...register("SecureCompany")}
           />
-          <SlideNextButton props="Guardar emergencia" />
+        
+          </div>
+          <SlideNextButton props="Guardar emergencias"  className1="saveAllerAncor" className="saveAllergens"/>
+          <SlideNextButton props="Registrare mi contacto en otro momento" className="otherRegister"/>
         </SwiperSlide>
 
-              {/* ----------------FORM SELECT ALLERGENS-------------------- */}
+              {/* ----------------PAGE FORM SELECT ALLERGENS-------------------- */}
 
         <SwiperSlide>
           <div className="head">
           <SlidePrevButton className="head--back" props="◄ Volver"/><p className="head--p">3 de 4</p>
           </div>
           <div className="cont-text3">
-            <h3 className="cont-text3--h3">Ahora selecciona tus alergias e intolerancias.</h3>
+            <h2 className="cont-text3--h3">Ahora selecciona tus alergias e intolerancias.</h2>
             <p className="cont-text3--p">Los elementos marcados serán identificados en tus busquedas como peligrosos para ti</p>
           </div>
           
@@ -441,14 +459,14 @@ export default function RegisterPage() {
             </div> : null}
         </div>
     
-          <SlideNextButton className="saveAllergens" href="#startSe" props="Guardar alergias"/>
+          <SlideNextButton className="saveAllergens" className1="saveAllerAncor" href="#startSe" props="Guardar alergias"/>
         </SwiperSlide>
 
-          {/* ----------------- CONFIRM ALLERGENS & SEND REGISTER -------------------- */}
+          {/* ----------------- PAGE CONFIRM ALLERGENS & SEND REGISTER -------------------- */}
 
         <SwiperSlide className="slideFinal" id="startSe">
           <div className="cont-text4">
-            <h3 className="cont-text4--h3">Confirma tu seleccion.</h3>
+            <h2 className="cont-text4--h3">Confirma tu seleccion.</h2>
             <p className="cont-text4--p">A continuación te resumimos los alimentos registrados como peligrosos para ti</p>
           </div>
           <div className="conf-aller" >
@@ -463,7 +481,7 @@ export default function RegisterPage() {
             <SlidePrevButton className="conf-aller--addNew" props="Añadir nuevos" />
           </div>
           
-          <button className="btn-submit" type="submit">CONFIRMAR</button>
+          <button className="btn-submit" onClick={() => console.log("me e ejecutado compare")} type="submit" >CONFIRMAR</button>
         </SwiperSlide>
 
       </Swiper>
