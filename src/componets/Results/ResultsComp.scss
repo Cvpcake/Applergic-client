@@ -3,4 +3,39 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    &__title {
+        width: 33%;
+    }
+    &__imgContainer {
+        width: 60vw;
+        text-align: center;
+    }
+    &__imgGreen {
+        border-radius: 20px;
+        border: 10px solid #83d8ad;
+        width: 70%;
+    }
+    &__img {
+        border-radius: 20px;
+        border: 10px solid #fbd292;
+        width: 70%;
+    }
+    &__text {
+        width: 80vw;
+        padding: 10px;
+        color: #595f65;
+        text-align: center;
+    }
+    &__nameGreen {
+        font-size: 18px;
+        text-align: center;
+    }
+    &__brandGreen {
+        color: #595f65;
+        text-align: center;
+    }
+    &__descriptionGreen {
+        color: #595f65;
+        text-align: center;
+    }
 }

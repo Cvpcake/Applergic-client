@@ -2,14 +2,12 @@ import React, {useState, useContext} from "react";
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
 import ResultsComp from '../Results/ResultsComp';
 import "./Scanner.scss";
-import { BarcodeContext } from '../../shared/contexts/BarcodeContext'
 
 
 function Scanner({ mode }) {
   const [data, setData] = useState("");
   const [stopStream, setStopStream] = useState(true);
-/*   const { setBarcode } = useContext(BarcodeContext);
- */
+  
   const dismissQrReader = () => {
     setStopStream(!stopStream);
   };

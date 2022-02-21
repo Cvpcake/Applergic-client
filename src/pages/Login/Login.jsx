@@ -13,9 +13,9 @@ export default function Login () {
         API.post('users/login', formData).then(res => {
             localStorage.setItem('token', res.data.token)
             localStorage.setItem('user', JSON.stringify(res.data.user))
-            console.log(res.data)
-            console.log(res.config.data)
-            console.log(res)
+            console.log(res.data, 'soy res.data')
+            console.log(res.config.data, 'soy res.config.data')
+            console.log(res, 'soy res')
             setJwt(true);
         })
     }
