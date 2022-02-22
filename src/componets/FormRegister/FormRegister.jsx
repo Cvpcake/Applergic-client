@@ -7,13 +7,10 @@ import { Pagination, Navigation, Scrollbar } from "swiper";
 import { useNavigate,Link } from 'react-router-dom';
 
 import {SlideNextButton, SlidePrevButton,} from "../SlideNextButton/SlideNextButton";
-// import "swiper/css";
-
 
 export default function RegisterPage() {
  
-
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState:{errors} } = useForm();
   const [userAllergies, setUserAllergies] = useState([]);
   const [interruptor, setInterruptor] = useState(false);
 
@@ -50,19 +47,20 @@ export default function RegisterPage() {
 
 
   let navigate = useNavigate();
+ 
+      //FUNCTION SETEADORA DE OBJETIVOS/VALOR
+  // handleInputChange(event) {
+  //   const target = event.target;
+  //   const value = target.type === 'checkbox' ? target.checked : target.value;
+  //   const name = target.name;
 
-          //--------FUNCTION SUBMIT FORM--------
-  const onSubmit = (formData) => {
-    console.log(formData.allergies);
-    API.post("users/", formData).then((res) => {
-      console.log("Register user");
-      console.log(formData);
-      navigate("/Home")
-    });
-  };
+  //   this.setState({
+  //     [name]: value
+  //   });
+  // }
 
 
-          //-------FUNCTION CHECK ALLERGENS---------
+          //-------FUNCTION CHECK ALLERGENS PRINT SELECT---------
    const handleCheckChildElement = (event) => {
     if(interruptor){
         setInterruptor(false)
@@ -82,6 +80,16 @@ export default function RegisterPage() {
     }
   } 
 
+         //--------FUNCTION SUBMIT FORM--------
+         const onSubmit = (formData) => {
+          console.log(formData.allergies);
+          API.post("users/", formData).then((res) => {
+            console.log("Register user");
+            console.log(formData);
+            navigate("/Home")
+          });
+        };
+
   return (
     <form className="formRegister" onSubmit={handleSubmit(onSubmit)}>
       
@@ -96,10 +104,10 @@ export default function RegisterPage() {
         allowTouchMove={false}
         className="swiperForm"
       >
-            {/* ------------------ FORM DATA USER ----------------------*/}
+            {/* ------------------ PAGE FORM DATA USER ----------------------*/}
 
         <SwiperSlide>
-        <div className="head">
+        <div className="head" id="page1">
           <Link className="head--back" to="/Login">◄ Volver</Link><p className="head--p">1 de 4</p>
           </div>
           <div className="cont-text3">
@@ -109,27 +117,44 @@ export default function RegisterPage() {
           <label htmlFor="name"></label>
           <input className="EmerName"
             id="name"
+            // onchange={this.handleInputChange}
             defaultValue="Luisa María de las Nieves"
-            {...register("name", { required: true })}
+            {...register("name", 
+            {required:{
+              value: true,
+              message: "Introduce un nombre"}
+            })}
           />
+          {errors.name && <span>{errors.name.message}</span>}
 
           <label htmlFor="email"></label>
           <input className="EmerContact"
             id="email"
             defaultValue="luisam@delasnieves.com"
             {...register("email", {
-              required: true,
-              pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+              required:{
+              value: true,
+              message: "Introduce un e-mail"
+              },
+              pattern:{
+              value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+              message: "El formato de e-mail no es correcto"
+              }
             })}
-          />
-
+          />  
+            {errors.email && <span>{errors.email.message}</span>}
           <label htmlFor="phone"></label>
           <input className="EmerContact"
             id="phone"
             defaultValue="605605605"
-            {...register("phone", { required: true })}
+            {...register("phone", { 
+              required:{
+              value: true,
+              message: "Introduce un número de teléfono"}
+            })}
           />
 
+            {errors.phone && <span>{errors.phone.message}</span>}
           <label htmlFor="password"></label>
           <input className="EmerContact"
             name="password"
@@ -137,15 +162,30 @@ export default function RegisterPage() {
             type="password"
             defaultValue="ABCedf123*"
             {...register("password", {
-              required: true,
-              //    pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
-            })}
+              required:{
+                value: true,
+                message: "Introduce una contraseña"
+              },
+              minLength: {
+                value: 8,
+                message: "La contraseña tiene que tener más de 8 caracteres"
+              },
+              maxLength: {
+                value: 24,
+                message: "La contraseña no puede tener más de 24 caracteres"
+              },
+              // pattern:{
+              //   value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+              //   alert: "La contraseña debe contener letra mayuscula, minuscula, número y un caracter especial (?.+*-_$%@)"
+              // },
+              })}
           />
+          {errors.password && <span>{errors.password.message}</span>}
           </div>
-          <SlideNextButton props="Guardar perfil" className1="saveAllerAncor" className="saveAllergens"/>
+          <SlideNextButton props="Guardar perfil" className1="saveAllerAncor" className="saveAllergens" isdisabled={false} />
         </SwiperSlide>
 
-            {/* --------------- PAGE FORM CONTACT EMERGENCI USER --------------- */}
+        {/* --//////////////////////////-- PAGE FORM CONTACT EMERGENCI USER --//////////////////////////-- */}
 
         <SwiperSlide>
         <div className="head">
@@ -479,11 +519,12 @@ export default function RegisterPage() {
               }
             </ul>
             <SlidePrevButton className="conf-aller--addNew" props="Añadir nuevos" />
+            
           </div>
-          
-          <button className="btn-submit" onClick={() => console.log("me e ejecutado compare")} type="submit" >CONFIRMAR</button>
+          {errors.email ? <a href="#page1" >{errors.email.message}</a> : null}
+          <button className="btn-submit" type="submit" >CONFIRMAR</button>
         </SwiperSlide>
-
+        
       </Swiper>
     </form>
   );

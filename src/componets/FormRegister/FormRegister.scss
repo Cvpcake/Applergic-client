@@ -83,7 +83,7 @@
  #ck-button label input {
      position:fixed;
      visibility: hidden;
-    //  top:-20px; esto redireccionaba la pagina arriba
+    //  top:-20px; redireccionaba la pagina arriba
  }
  
  #ck-button input:checked + span {
@@ -101,6 +101,7 @@
         color: rgb(38,200,220);
         position: absolute;
         text-decoration: none;
+        font-size: 90%;
     }
     &--p{
         margin: 0 auto;
@@ -171,6 +172,9 @@
         margin: 3vh 0px;
         border-radius: 6px;
         text-decoration: none;
+        &:disabled{
+            background-color:grey;
+        }
  }
  
  .saveAllerAncor{
