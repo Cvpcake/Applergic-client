@@ -2,27 +2,50 @@
     display: flex;
     flex-direction: column;
     text-align: center;
+    
     .escanear {
         border-radius: 10px;
-        border-color: #26c7dc;
         width: 80%;
         padding: 20px 20px;
-        background-color: #26c7dc;
         color: whitesmoke;
+        background-color:rgb(0, 155, 207);
+        border: none;
+        color:white;
+        font-weight: bold;
+        font-size: 105%;
+        width:85%;
+        height:7vh;
+        margin-top: 3vh;
+        border-radius: 6px;
+  
     }
     .buscar {
         border-radius: 10px;
         width: 80%;
         padding: 20px 20px;
         background-color:#c4c4c4;
+        border: none;
         color: whitesmoke;
+        font-weight: bold;
+        font-size: 105%;
+        width:85%;
+        height:7vh;
+        margin-top: 3vh;
+        border-radius: 6px;
+        padding: 20px 20px;
+        
     }
     .emergencias {
-        border-radius: 10px;
-        width: 80%;
         padding: 20px 20px;
-        background-color: #f57c97;
+        background-color:#f57c97;
+        border: none;
         color: whitesmoke;
+        font-weight: bold;
+        font-size: 105%;
+        width:85%;
+        height:7vh;
+        margin-top: 3vh;
+        border-radius: 6px;
     }
 
 }

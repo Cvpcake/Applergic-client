@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { JwtContext } from "../../contexts/JwtContext";
+import { JwtContext } from "../../shared/contexts/JwtContext";
 
 
 export default function AuthButton () {
@@ -13,18 +13,17 @@ export default function AuthButton () {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         setJwt(null);
-        navigate("/");
+        navigate("/login");
     }
 
     return jwt ? (
-        <p>
-            Welcome! {user.name}
-            <button
+        <div>
+     
+            <button className="dropdown-img"
                 onClick={signOut}
-            >
-                Sign out
+            ><img className="dropdown-img" src="./images/exit.png" alt="exit" /><p className="dropdown-p">Salir</p>
             </button>
-        </p>
+        </div>
     ) : (
         <p>You are not logged in.</p>
     );
