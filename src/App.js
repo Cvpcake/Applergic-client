@@ -32,7 +32,7 @@ function App() {
           {jwt && <Route path="/Home/Buscador" element={<Buscador />} />}
           {jwt && <Route path="/Home/Emergencias" element={<Emergencias />} />}
           {jwt && <Route path="/Home/Results" element={<Results />} />}
-          {jwt && <Route path="/Home/FinalRegistro" element={<FinalRegistro />} />}
+           <Route path="/Home/FinalRegistro" element={<FinalRegistro />} />
           </Routes>
         </BrowserRouter>
       </div>

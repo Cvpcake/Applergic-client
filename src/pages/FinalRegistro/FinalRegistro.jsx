@@ -6,9 +6,9 @@ const FinalRegistro = () => {
   return (
     <div>
       <div className="HeaderContainer">
-      <Link className="LinkVolver56" to="/Home">{"◄"} Volver </Link>
+      
         <p className="P50">4 de 4</p>
-        <p className="P60">X</p>
+        <Link className="LinkVolver56" to="/Login">X</Link>
       </div>
       <div className="DivImg">
         <img
