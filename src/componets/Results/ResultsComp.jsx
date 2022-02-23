@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./ResultsComp.scss";
 import { API } from "../../shared/services/api";
-/* import { UserContext } from "../../shared/contexts/UserContext"; */
+
 
 function Results({ data, dismissQrReader }) {
   const [productFound, setProductFound] = useState({});
@@ -23,10 +23,11 @@ function Results({ data, dismissQrReader }) {
       axios(`http://localhost:5000/api/products/${data}`).then((res) => {
         setMatch(1);
         setProductFound(res.data);
+        
       });
-    } catch (error) {
+    } catch (err) {
       setMatch(0);
-      console.log(error);
+      console.log(err);
     }
   };
 
