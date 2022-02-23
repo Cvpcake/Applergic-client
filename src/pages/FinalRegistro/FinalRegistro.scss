@@ -1,11 +1,10 @@
 .HeaderContainer{
     display: flex;
-    flex-wrap: wrap;
-    text-align: center;
-    justify-content: space-between;
+    
+    
     margin-left: 10px;
     margin-right: 10px;
-    margin-top: 20px;
+    margin-top: 40px;
     
 }
 
@@ -16,7 +15,10 @@
 }
 .P50{
     text-align: center;
-    padding-right: 70px;
+    //padding-top: 15px;
+    //padding-left: 100px;
+    margin: 0 0 0 45%;
+
 
 }
 .P60{
@@ -50,13 +52,16 @@
     flex-wrap: wrap;
     flex-direction: column;
     text-align: center;
+    align-items: center;
     
 }
 .H1Terminado{
     
     text-align: center;
-    font-size: 18px;
+    font-size: 130%;
     margin-top: 50px;
+    width: 70%;
+    
     
 
 }
@@ -71,15 +76,23 @@
 
 }
 .Link1562{
-    background-color: #27C7DC;
-   padding: 20px 30px;
-    width: 200px;
-    border-radius: 7px;
-    text-align: center;
+    background-color:rgb(0, 155, 207);
+    border: none;
+    color:white;
+    font-weight: bold;
+    font-size: 105%;
+   // width:85%;
+    padding: 3vh 7vh 3vh; 
+    margin-top: 3vh;
+    border-radius: 6px;
     text-decoration: none;
+
 }
 
 .LinkVolver56 {
     text-decoration: none;
-    padding: 16px;
+    //padding: 16px;
+    //position: absolute;
+    //margin-left:auto;
+    margin: 0 0 0 35%;
 }
