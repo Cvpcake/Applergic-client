@@ -8,8 +8,8 @@ function Scanner({ mode }) {
   const [data, setData] = useState("");
   const [stopStream, setStopStream] = useState(true);
   
-  const dismissQrReader = () => {
-    setStopStream(!stopStream);
+  const dismissQrReader =  () => {
+     setStopStream(!stopStream);
   };
 
   return (
