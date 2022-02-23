@@ -82,11 +82,11 @@ export default function RegisterPage() {
 
          //--------FUNCTION SUBMIT FORM--------
          const onSubmit = (formData) => {
-          console.log(formData.allergies);
+          console.log(formData.allergens);
           API.post("users/", formData).then((res) => {
             console.log("Register user");
             console.log(formData);
-            navigate("/Home")
+            navigate("/Home/FinalRegistro")
           });
         };
 
@@ -174,10 +174,10 @@ export default function RegisterPage() {
                 value: 24,
                 message: "La contraseña no puede tener más de 24 caracteres"
               },
-              // pattern:{
-              //   value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-              //   alert: "La contraseña debe contener letra mayuscula, minuscula, número y un caracter especial (?.+*-_$%@)"
-              // },
+              pattern:{
+                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-])/,
+                message: "La contraseña debe contener letra mayuscula, minuscula, número y un caracter especial (!@#$%^&*_=+-)"
+              },
               })}
           />
           {errors.password && <span>{errors.password.message}</span>}
@@ -505,6 +505,9 @@ export default function RegisterPage() {
           {/* ----------------- PAGE CONFIRM ALLERGENS & SEND REGISTER -------------------- */}
 
         <SwiperSlide className="slideFinal" id="startSe">
+        <div className="head">
+          <SlidePrevButton className="head--back" props="◄ Volver"/>
+          </div>
           <div className="cont-text4">
             <h2 className="cont-text4--h3">Confirma tu seleccion.</h2>
             <p className="cont-text4--p">A continuación te resumimos los alimentos registrados como peligrosos para ti</p>
@@ -521,7 +524,11 @@ export default function RegisterPage() {
             <SlidePrevButton className="conf-aller--addNew" props="Añadir nuevos" />
             
           </div>
-          {errors.email ? <a href="#page1" >{errors.email.message}</a> : null}
+          {errors.name ? <span className="alertConfirm"> Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</span> : 
+          errors.email ? <span className="alertConfirm"> Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</span> : 
+          errors.phone ? <span className="alertConfirm"> Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</span> : 
+          errors.password ? <span className="alertConfirm"> Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</span> : 
+          null}
           <button className="btn-submit" type="submit" >CONFIRMAR</button>
         </SwiperSlide>
         
