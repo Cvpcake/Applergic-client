@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { JwtContext } from "../../shared/contexts/JwtContext";
-
+import './AuthButton.scss';
 
 export default function AuthButton () {
     const {jwt, setJwt} = useContext(JwtContext);
@@ -17,13 +17,13 @@ export default function AuthButton () {
     }
 
     return jwt ? (
-        <div>
+       
      
-            <button className="dropdown-img"
+            <button className="dropdown-content-btn"
                 onClick={signOut}
-            ><img className="dropdown-img" src="./images/exit.png" alt="exit" /><p className="dropdown-p">Salir</p>
+            ><img className="btn-img" src="./images/exit.png" alt="exit" /><p className="exit-p">Salir</p>
             </button>
-        </div>
+        
     ) : (
         <p>You are not logged in.</p>
     );

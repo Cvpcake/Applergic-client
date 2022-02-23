@@ -1,2 +1,27 @@
-.dropdown-img {
+.dropdown-content-btn {
+    color: #007aff;
+    padding-right: 65px;
+    padding-bottom: 20px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: none;
+    width: 100%;
+    background-color: inherit;
+    
 }
+.btn-img {
+    width: 30px;
+    height: 30px;
+    padding-top: 15px;
+    padding-right: 2px;
+        
+        
+    }
+
+    .exit-p{
+        font-size: 17px;
+        text-align: left;
+        
+    }
