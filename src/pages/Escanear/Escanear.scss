@@ -1,5 +1,23 @@
 .escanear-container {
     font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+}
+.stopReader {
+    background-color: #26c7dc;
+    border: none;
+    border: none;
+    color:white;
+    font-weight: bold;
+    font-size: 105%;
+    padding: 3vh 7vh 3vh; 
+    margin-top: 3vh;
+    border-radius: 6px;
+    text-decoration: none;
+    border-radius: 6px;
+    padding: 15px;
+    margin: 5px;
+    font-weight: bold;
+    color: whitesmoke;
 }
 
 .btn-container {
@@ -12,20 +30,49 @@
         border-radius: 50%;
     }
     .custom-btn1{
+        width: 60px;
+        height: 60px;
+        border: none;
         background-color: #d8d8d8;
+        img {
+            width: 100%;
+        }
     }
     .custom-btn1:focus {
         background-color: #26c7dc;
+        img {
+            width: 100%;
+        }
     }
     .custom-btn2{
+        width: 60px;
+        height: 60px;
+        border: none;
         background-color: #d8d8d8;
+        img {
+            width: 100%;
+        }
     }
     .custom-btn2:focus {
+        
         background-color: #26c7dc;
+        img {
+            width: 100%;
+        }
     }
     .custom-btn3{
+        width: 60px;
+        height: 60px;
+        border: none;
         background-color: #d8d8d8;
+        img {
+          
+            width: 100%;
+        }
     }
     .custom-btn3:focus {
         background-color: #26c7dc;
+        img {
+            width: 100%;
+        }
     }}

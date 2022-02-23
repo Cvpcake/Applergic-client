@@ -21,7 +21,7 @@ export default function AuthButton () {
      
             <button className="dropdown-content-btn"
                 onClick={signOut}
-            ><img className="btn-img" src="./images/exit.png" alt="exit" /><p className="exit-p">Salir</p>
+            ><img className="btn-img" src="../images/exit.png" alt="exit" /><p className="exit-p">Salir</p>
             </button>
         
     ) : (
