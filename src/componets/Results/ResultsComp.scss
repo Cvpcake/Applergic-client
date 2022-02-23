@@ -2,7 +2,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center;ç+
+    &.second-img {
+
+    }
     &__title {
         width: 33%;
     }
@@ -13,12 +16,17 @@
     &__imgGreen {
         border-radius: 20px;
         border: 10px solid #83d8ad;
-        width: 70%;
+        width: 150px;
+    }
+    &__imgPink {
+        border-radius: 20px;
+        border: 10px solid #fb92aa;
+        width: 150px;
     }
     &__img {
         border-radius: 20px;
         border: 10px solid #fbd292;
-        width: 70%;
+        width: 150px;
     }
     &__text {
         width: 80vw;
@@ -35,6 +43,18 @@
         text-align: center;
     }
     &__descriptionGreen {
+        color: #595f65;
+        text-align: center;
+    }
+    &__namePink {
+        font-size: 18px;
+        text-align: center;
+    }
+    &__brandPink {
+        color: #595f65;
+        text-align: center;
+    }
+    &__descriptionPink {
         color: #595f65;
         text-align: center;
     }

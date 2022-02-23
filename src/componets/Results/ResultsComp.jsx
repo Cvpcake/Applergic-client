@@ -1,32 +1,28 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./ResultsComp.scss";
-import {API} from '../../shared/services/api';
+import { API } from "../../shared/services/api";
 /* import { UserContext } from "../../shared/contexts/UserContext"; */
 
 function Results({ data, dismissQrReader }) {
   const [productFound, setProductFound] = useState({});
   const [match, setMatch] = useState(0);
   const [userAllergies, setUserAllergies] = useState([]);
-  const [healthy, setHealthy] = useState(true);
+  let healthy = 0;
 
   const user = JSON.parse(localStorage.getItem("user"));
-  
+
   useEffect(() => {
-    API.get(`users/${user}`).then(res => {
-      setUserAllergies(res.data.allergies)
-  })
     getProducts();
+    getUserLogin();
     dismissQrReader();
-    
   }, [data]);
 
-  const getProducts =  () => {
+  const getProducts = () => {
     try {
-       axios(`http://localhost:5000/api/products/${data}`).then((res) => {
+      axios(`http://localhost:5000/api/products/${data}`).then((res) => {
         setMatch(1);
         setProductFound(res.data);
-        compare();
       });
     } catch (error) {
       setMatch(0);
@@ -34,24 +30,35 @@ function Results({ data, dismissQrReader }) {
     }
   };
 
+  const getUserLogin = () => {
+    API.get(`users/${user}`).then((res) => {
+      setUserAllergies(res.data.allergies);
+    });
+  };
+
   const compare = () => {
-    console.log('entro en el compare')
-    for (const allergy of userAllergies) {
-      for (const allergen of productFound.allergens) {
-        console.log(allergy,'soy allergy');
-        console.log(allergen, 'soy allergen');
-        
-        if(allergy === allergen.name){
-          console.log('Tiene alergenos')
-          setHealthy(false);
-        }
+    if (healthy === 1 || match === 0) {
+      return;
+    } else {
+      for (var i = 0; i < userAllergies.length; i++) {
+        console.log(userAllergies[i], "userAllergies");
+        let allergy = userAllergies[i];
+        // eslint-disable-next-line no-loop-func
+        productFound.allergens.map((allergen) => {
+          console.log(allergen.name, "Soy los alergenos");
+
+          if (allergy === allergen.name) {
+            console.log("He encontrado una alergia con este producto");
+             healthy = 1;
+          }
+          return healthy;
+        })
+        console.log(healthy)
       }
     }
-  }
-
-
+  };
+  compare();
   return (
-   
     <div>
       {match === 0 ? (
         <div className="result-container">
@@ -68,12 +75,13 @@ function Results({ data, dismissQrReader }) {
             />
           </div>
         </div>
-      ) : healthy === false ? ( 
+      ) : healthy === 0 ? (
         <div className="result-container">
           <h2 className="result-container__title">Aqui tienes el resultado</h2>
           <p className="result-container__text">
             Este producto es apto para ti.
           </p>
+          <div className="second-img">
           <div className="result-container__imgContainer">
             <img
               className="result-container__imgGreen"
@@ -81,15 +89,33 @@ function Results({ data, dismissQrReader }) {
               alt={productFound.name}
             />
           </div>
+          </div>
           <h3 className="result-container__nameGreen">{productFound.name}</h3>
           <h4 className="result-container__brandGreen">{productFound.brand}</h4>
           <p className="result-container__descriptionGreen">
             {productFound.description}
           </p>
         </div>
-      ) : (<div>
-        <p>Este producto no es pa ti BRO</p>
-      </div>)}
+      ) : (
+        <div className="result-container">
+          <h2 className="result-container__title">Aqui tienes el resultado</h2>
+          <p className="result-container__text">
+            Este producto <span>NO</span> es apto para ti.
+          </p>
+          <div className="result-container__imgContainer">
+            <img
+              className="result-container__imgPink"
+              src={productFound.image}
+              alt={productFound.name}
+            />
+          </div>
+          <h3 className="result-container__namePink">{productFound.name}</h3>
+          <h4 className="result-container__brandPink">{productFound.brand}</h4>
+          <p className="result-container__descriptionPink">
+            {productFound.description}
+          </p>
+        </div>
+      )}
     </div>
   );
 }
