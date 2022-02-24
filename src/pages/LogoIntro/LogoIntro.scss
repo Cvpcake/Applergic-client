@@ -3,8 +3,12 @@
   flex-wrap: wrap;
 }
 .LogoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
   width: 100%;
-  //height: 30vh;
+  height: 40vh;
+  
 }
 
 .LinkLogo {
@@ -20,12 +24,14 @@
   bottom: 0;
 }
 .H1{
-  margin: 50px 0px 50px 0px;
+  margin: 30px 0px;
   text-align: center;
+  color: black;
+  font-size: 250%;
 }
 .P {
   text-align: center;
-  
-  //margin-top: 80px;
+  font-weight: bold;
   font-size: 16px;
+  color: #888686;
 }

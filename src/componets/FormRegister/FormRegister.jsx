@@ -59,11 +59,11 @@ export default function RegisterPage() {
 
           //---------FUNCTION ADD AND DELETE CHECKED ALLERGENS-------
     if(!userAllergies.includes(event)){
-      console.log('añade', userAllergies)
+      // console.log('añade', userAllergies)
       const newAllergies = [ ...userAllergies, event ];
       setUserAllergies(newAllergies);
     } else {
-      console.log('elimina', userAllergies)
+      // console.log('elimina', userAllergies)
       let pos = userAllergies.indexOf(event);
       userAllergies.splice(pos, 1);
     }
@@ -77,7 +77,7 @@ export default function RegisterPage() {
 
     const emailsUsers = () =>{
       API.get("users/allUsers").then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setEmails(res.data)
       });
     }
@@ -87,9 +87,9 @@ export default function RegisterPage() {
 
     //--------FUNCTION SUBMIT FORM--------
     useEffect(()=>{
-      console.log('soy useEffect marico')
+      // console.log('soy useEffect')
       if(repeat === false){
-        console.log('soy if submit mamaguevo')
+        // console.log('soy if submit')
 
       submitRegister(data);
         }
@@ -97,8 +97,8 @@ export default function RegisterPage() {
 
     const submitRegister = (formdata) =>{
             API.post("users/", formdata).then((res) => {
-            console.log("Register user");
-            console.log(formdata);
+            // console.log("Register user");
+            // console.log(formdata);
             navigate("/Home/FinalRegistro")
           });
     }
@@ -109,15 +109,14 @@ export default function RegisterPage() {
          
          const onSubmit = async (formData) => {
           setData(formData)
-          console.log(formData);
-          console.log(emails);
-          console.log(formData.email);
-
+          // console.log(formData);
+          // console.log(emails);
+          // console.log(formData.email);
              if(emails.includes(formData.email)){
-                console.log('Usuario ya existe')
+                // console.log('Usuario ya existe')
                 setRepeat(true)
              }else{
-               console.log('me e cambiado a false')
+              //  console.log('me e cambiado a false')
                 setRepeat(false)
              }
         };
@@ -127,10 +126,6 @@ export default function RegisterPage() {
   return (
     <form className="formRegister" onSubmit={handleSubmit(onSubmit)}>
       
-      {/* SOLUCIONAR...xd */}
-      {/* <label htmlFor="image">Imagen</label>
-            <input type="file" id="image" 
-                   {...register("file")} /> */}
       <Swiper
         modules={[Pagination, Navigation, Scrollbar]}
         spaceBetween={50}
@@ -151,20 +146,19 @@ export default function RegisterPage() {
           <label htmlFor="name"></label>
           <input className="EmerName"
             id="name"
-            // onchange={this.handleInputChange}
-            defaultValue="Luisa María de las Nieves"
+            placeholder="Nombre completo"
             {...register("name", 
             {required:{
               value: true,
               message: "Introduce un nombre"}
             })}
           />
-          {errors.name && <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><span className="divMessg--text">{errors.name.message}</span></div>}
+          {errors.name && <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><p className="divMessg--text">{errors.name.message}</p></div>}
 
           <label htmlFor="email"></label>
           <input className="EmerContact"
             id="email"
-            defaultValue="luisam@delasnieves.com"
+            placeholder="Dirección e-mail"
             {...register("email", {
               required:{
               value: true,
@@ -176,12 +170,13 @@ export default function RegisterPage() {
               }
             })}
           />  
-            {errors.email && <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><span className="divMessg--text">{errors.email.message}</span></div>}
+            {repeat === true ? <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><p className="divMessg--text">email existente, introduce un nuevo email y vuelve a guardar tús cambios</p></div> : null }
+            {errors.email && <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><p className="divMessg--text">{errors.email.message}</p></div>}
           
           <label htmlFor="phone"></label>
           <input className="EmerContact"
             id="phone"
-            defaultValue="605605605"
+            placeholder="Móvil"
             {...register("phone", { 
               required:{
               value: true,
@@ -189,13 +184,13 @@ export default function RegisterPage() {
             })}
           />
 
-            {errors.phone && <span className="alertMessag">{errors.phone.message}</span>}
+            {errors.phone && <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><p className="divMessg--text">{errors.phone.message}</p></div>}
           <label htmlFor="password"></label>
           <input className="EmerContact"
+            placeholder="Password"
             name="password"
             id="password"
             type="password"
-            defaultValue="ABCedf123*"
             {...register("password", {
               required:{
                 value: true,
@@ -215,7 +210,7 @@ export default function RegisterPage() {
               },
               })}
           />
-          {errors.password && <div className="divMessgPass"><img className="divMessgPass--img" src="./images/alerticon.png" alt="alerta"/><span className="divMessgPass--text">{errors.password.message}</span></div>}
+          {errors.password && <div className="divMessgPass"><img className="divMessgPass--img" src="./images/alerticon.png" alt="alerta"/><p className="divMessgPass--text">{errors.password.message}</p></div>}
           </div>
           <SlideNextButton props="Guardar perfil" className1="saveAllerAncor" className="saveAllergens" isdisabled={false} />
         </SwiperSlide>
@@ -235,33 +230,29 @@ export default function RegisterPage() {
           <label htmlFor="nameContact"></label>
           <input className="EmerName" placeholder="Nombre completo de tu contacto"
             id="nameContact"
-            defaultValue="Jorge de las Nieves"
             {...register("nameContact")}
           />
 
           <label htmlFor="emailContact"></label>
           <input className="EmerContact" placeholder="Dirección e-mail"
             id="emailContact"
-            defaultValue="jorge@delasnieves.com"
             {...register("emailContact", {
               pattern:{
                 value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
                 message: "El formato de e-mail no es correcto"
             }})}
           />
-          {errors.emailContact && <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><span className="divMessg--text">{errors.emailContact.message}</span></div>}
+          {errors.emailContact && <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><p className="divMessg--text">{errors.emailContact.message}</p></div>}
 
           <label htmlFor="emergencyContact"></label>
           <input className="EmerContact" placeholder="Móvil"
             id="emergencyContact"
-            defaultValue="605605605"
             {...register("emergencyContact")}
           />
 
           <label htmlFor="SecureCompany"></label>
           <input className="EmerContact" placeholder="Compañia de Seguros / Nº Póliza"
             id="SecureCompany"
-            defaultValue="Mutua? idk xd"
             {...register("SecureCompany")}
           />
         
