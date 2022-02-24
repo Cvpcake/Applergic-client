@@ -15,7 +15,7 @@
     width: 25px !important;
     height: 23px !important;
     }
-    &--text,&--textp{
+    &--text, &--textp{
     color: red;
     }
 }
@@ -147,7 +147,9 @@
         width:85%;
     }
 }
-
+.cont-text3{
+    justify-content: center;
+}
 .cont-text4{
     margin-top: 15%;
 }
@@ -268,7 +270,6 @@
     background:rgb(248, 73, 114);
     box-shadow:0 0 5px red, 0 0 10px red, 0 0 5px red inset, 0 0 10px red inset;
     padding: 15px 10px;
-    // font-weight: bold;
     border-radius:20px;
     transition: 0.2s;
     margin-right:10%;
