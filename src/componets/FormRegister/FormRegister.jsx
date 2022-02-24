@@ -14,6 +14,7 @@ export default function RegisterPage() {
   const { register, handleSubmit, formState:{errors} } = useForm();
   const [userAllergies, setUserAllergies] = useState([]);
   const [interruptor, setInterruptor] = useState(false);
+  const alert = "https://res.cloudinary.com/dvawsqdhx/image/upload/v1645737426/Applergic/alertIcon_zo1q6y.png";
 
           //----------ARRAYS ALLERGENS-----------
    const letterA = ['Ácido benzoico','Almendras','Altramuces','Anacardo','Api','Arroz','Avellana']
@@ -153,7 +154,7 @@ export default function RegisterPage() {
               message: "Introduce un nombre"}
             })}
           />
-          {errors.name && <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><p className="divMessg--text">{errors.name.message}</p></div>}
+          {errors.name && <div className="divMessg"><img className="divMessg--img" src={alert} alt="alerta"/><p className="divMessg--text">{errors.name.message}</p></div>}
 
           <label htmlFor="email"></label>
           <input className="EmerContact"
@@ -170,8 +171,8 @@ export default function RegisterPage() {
               }
             })}
           />  
-            {repeat === true ? <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><p className="divMessg--text">email existente, introduce un nuevo email y vuelve a guardar tús cambios</p></div> : null }
-            {errors.email && <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><p className="divMessg--text">{errors.email.message}</p></div>}
+            {repeat === true ? <div className="divMessg"><img className="divMessg--img" src={alert} alt="alerta"/><p className="divMessg--text">email existente, introduce un nuevo email y vuelve a guardar tús cambios</p></div> : null }
+            {errors.email && <div className="divMessg"><img className="divMessg--img" src={alert} alt="alerta"/><p className="divMessg--text">{errors.email.message}</p></div>}
           
           <label htmlFor="phone"></label>
           <input className="EmerContact"
@@ -184,7 +185,7 @@ export default function RegisterPage() {
             })}
           />
 
-            {errors.phone && <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><p className="divMessg--text">{errors.phone.message}</p></div>}
+            {errors.phone && <div className="divMessg"><img className="divMessg--img" src={alert} alt="alerta"/><p className="divMessg--text">{errors.phone.message}</p></div>}
           <label htmlFor="password"></label>
           <input className="EmerContact"
             placeholder="Password"
@@ -210,7 +211,7 @@ export default function RegisterPage() {
               },
               })}
           />
-          {errors.password && <div className="divMessgPass"><img className="divMessgPass--img" src="./images/alerticon.png" alt="alerta"/><p className="divMessgPass--text">{errors.password.message}</p></div>}
+          {errors.password && <div className="divMessgPass"><img className="divMessgPass--img" src={alert} alt="alerta"/><p className="divMessgPass--text">{errors.password.message}</p></div>}
           </div>
           <SlideNextButton props="Guardar perfil" className1="saveAllerAncor" className="saveAllergens" isdisabled={false} />
         </SwiperSlide>
@@ -242,7 +243,7 @@ export default function RegisterPage() {
                 message: "El formato de e-mail no es correcto"
             }})}
           />
-          {errors.emailContact && <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><p className="divMessg--text">{errors.emailContact.message}</p></div>}
+          {errors.emailContact && <div className="divMessg"><img className="divMessg--img" src={alert} alt="alerta"/><p className="divMessg--text">{errors.emailContact.message}</p></div>}
 
           <label htmlFor="emergencyContact"></label>
           <input className="EmerContact" placeholder="Móvil"
@@ -568,12 +569,12 @@ export default function RegisterPage() {
             <SlidePrevButton className="conf-aller--addNew" props="Añadir nuevos" />
             
           </div>
-          {errors.name ? <div className="alert"><img className="alert--img" src="./images/alerticon.png" alt="alerta"/><p className="alert--text">Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</p></div> : 
-          errors.email ? <div className="alert"><img className="alert--img" src="./images/alerticon.png" alt="alerta"/><p className="alert--text">Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</p></div> : 
-          errors.phone ? <div className="alert"><img className="alert--img" src="./images/alerticon.png" alt="alerta"/><p className="alert--text">Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</p></div> : 
-          errors.password ? <div className="alert"><img className="alert--img" src="./images/alerticon.png" alt="alerta"/><p className="alert--text">Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</p></div> : 
+          {errors.name ? <div className="alert"><img className="alert--img" src={alert} alt="alerta"/><p className="alert--text">Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</p></div> : 
+          errors.email ? <div className="alert"><img className="alert--img" src={alert} alt="alerta"/><p className="alert--text">Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</p></div> : 
+          errors.phone ? <div className="alert"><img className="alert--img" src={alert} alt="alerta"/><p className="alert--text">Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</p></div> : 
+          errors.password ? <div className="alert"><img className="alert--img" src={alert} alt="alerta"/><p className="alert--text">Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</p></div> : 
           null}
-          {repeat === true ? <div className="alert"><img className="alert--img" src="./images/alerticon.png" alt="alerta"/><p className="alert--text">Tu usuario ya existe, puedes utilizar un nuevo email para crear un usuario nuevo o volver al espacio de <Link to="/Login">iniciar sesión</Link></p></div> : null }
+          {repeat === true ? <div className="alert"><img className="alert--img" src={alert} alt="alerta"/><p className="alert--text">Tu usuario ya existe, puedes utilizar un nuevo email para crear un usuario nuevo o volver al espacio de <Link to="/Login">iniciar sesión</Link></p></div> : null }
           <button className="btn-submit" type="submit" >CONFIRMAR</button>
         </SwiperSlide>
         
