@@ -5,7 +5,9 @@
     align-items: center;
     &__title {
         width: 33%;
+        font-size: 21px;
     }
+   
     &__imgContainer {
         width: 60vw;
         text-align: center;
@@ -23,10 +25,32 @@
         border-radius: 50%;
         margin-left: -4vw;
     }
+    &__checkImgGreen {
+        object-fit: contain;
+        position: absolute;
+        background-color: #83d8ad;
+        padding: 10px;
+        width: 40px;
+        border-radius: 50%;
+        margin-left: -4vw;
+    }
+
+    &__checkImgOrange {
+        object-fit: contain;
+        position: absolute;
+        background-color: #fbd292;
+        padding: 10px;
+        width: 40px;
+        border-radius: 50%;
+        margin-left: -4vw;
+    }
     &__imgGreen {
         border-radius: 20px;
         border: 10px solid #83d8ad;
-        width: 80%;    }
+        width: 80%; 
+        margin-left:2.5vw;
+        padding: 10px; 
+      }
     &__imgPink {
         border-radius: 20px;
         border: 10px solid #fb92aa;
@@ -38,7 +62,9 @@
     &__img {
         border-radius: 20px;
         border: 10px solid #fbd292;
-        width: 80%;
+        width: 70%;
+        margin-left:2.5vw;
+        padding: 10px;
         }
         
     &__text {
@@ -50,18 +76,22 @@
     &__nameGreen {
         font-size: 18px;
         text-align: center;
+        letter-spacing: 0.6px;
     }
     &__brandGreen {
         color: #595f65;
         text-align: center;
+        
     }
     &__descriptionGreen {
         color: #595f65;
         text-align: center;
     }
     &__namePink {
+       width: 300px;
         font-size: 18px;
         text-align: center;
+        letter-spacing: 0.6px;
     }
     &__brandPink {
         color: #595f65;
