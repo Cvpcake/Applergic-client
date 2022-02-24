@@ -16,6 +16,7 @@ function Scanner({ mode }) {
   return (
     <div>
     <div className="backToHome-container">
+    <Link to="/Home"><p className="backScanner"> Volver</p></Link>
     <Link to="/Home" ><button className="backToHome-container__btn">{/* <img src="../images/backtohome.png" alt="boton back to home"/> */}X</button></Link>
     </div>
     {data === "" ? (

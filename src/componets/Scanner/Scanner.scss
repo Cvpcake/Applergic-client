@@ -30,6 +30,18 @@
 .backToHome-container {
   text-align: right;
   height: 10vh;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  a {
+    text-decoration: none;
+    color: #83d8ad;
+    padding: 15px 10px 0px 15px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: normal;
+  }
+  
   &__btn {
     border: none;
     background-color: inherit;

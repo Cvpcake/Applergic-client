@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./ResultsComp.scss";
 import { API } from "../../shared/services/api";
-
+import { Link } from "react-router-dom";
 
 function Results({ data, dismissQrReader }) {
   const [productFound, setProductFound] = useState({});
@@ -23,7 +23,6 @@ function Results({ data, dismissQrReader }) {
       axios(`http://localhost:5000/api/products/${data}`).then((res) => {
         setMatch(1);
         setProductFound(res.data);
-        
       });
     } catch (err) {
       setMatch(0);
@@ -50,17 +49,18 @@ function Results({ data, dismissQrReader }) {
 
           if (allergy === allergen.name) {
             console.log("He encontrado una alergia con este producto");
-             healthy = 1;
+            healthy = 1;
           }
           return healthy;
-        })
-        console.log(healthy)
+        });
+        console.log(healthy);
       }
     }
   };
   compare();
   return (
     <div>
+      
       {match === 0 ? (
         <div className="result-container">
           <h2 className="result-container__title">Aqui tienes el resultado</h2>
@@ -70,6 +70,11 @@ function Results({ data, dismissQrReader }) {
           </p>
           <div className="result-container__imgContainer">
             <img
+              className="result-container__checkImgOrange"
+              src="../images/interrogacion.png"
+              alt="Check"
+            />
+            <img
               className="result-container__img"
               src="https://sipp-pinturerias.com.ar/img/404.png"
               alt="product not found"
@@ -78,18 +83,24 @@ function Results({ data, dismissQrReader }) {
         </div>
       ) : healthy === 0 ? (
         <div className="result-container">
-          <h2 className="result-container__title">Aqui tienes el resultado</h2>
+          <h3 className="result-container__title">Aqui tienes el resultado</h3>
           <p className="result-container__text">
             Este producto es apto para ti.
           </p>
           <div className="second-img">
-          <div className="result-container__imgContainer">
-            <img
-              className="result-container__imgGreen"
-              src={productFound.image}
-              alt={productFound.name}
-            />
-          </div>
+            <div className="result-container__imgContainer">
+              <img
+                className="result-container__checkImgGreen"
+                src="../images/productok.png"
+                alt="Check"
+              />
+
+              <img
+                className="result-container__imgGreen"
+                src={productFound.image}
+                alt={productFound.name}
+              />
+            </div>
           </div>
           <h3 className="result-container__nameGreen">{productFound.name}</h3>
           <h4 className="result-container__brandGreen">{productFound.brand}</h4>
@@ -104,7 +115,11 @@ function Results({ data, dismissQrReader }) {
             Este producto <span>NO</span> es apto para ti.
           </p>
           <div className="result-container__imgContainer">
-            <img className="result-container__checkImg" src="../images/checkX.png" alt="Check"/>
+            <img
+              className="result-container__checkImg"
+              src="../images/checkX.png"
+              alt="Check"
+            />
             <img
               className="result-container__imgPink"
               src={productFound.image}
