@@ -3,8 +3,25 @@
 }
 
 .swiper-slide{
-    justify-content:start !important;
-    
+    justify-content:start !important;   
+}
+
+.divMessg, .divMessgPass{
+    display: flex;
+    justify-content: center;
+    height: 0px;
+    align-items: center;
+    &--img{
+    width: 25px !important;
+    height: 23px !important;
+    }
+    &--text,&--textp{
+    color: red;
+    }
+}
+
+.divMessgPass{
+    min-height: 22px;
 }
 
 .contInputEmer{
@@ -60,7 +77,7 @@
      margin:4px;
      color:#888686;
      border-radius:20px;
-     border:1px solid #888686;
+     
      overflow:auto;
      float:left;
      :hover{
@@ -71,6 +88,7 @@
  
  #ck-button label {
      float:left;
+     
  }
  
  #ck-button label span {
@@ -78,6 +96,8 @@
      padding: 6px 10px;
      display:block;
      font-weight: bold;
+     border-radius:20px;
+     border:1px solid #888686;
  }
  
  #ck-button label input {
@@ -88,6 +108,7 @@
  
  #ck-button input:checked + span {
      background:rgb(248,73,113);
+     border:1px solid transparent;
      color:#fff;
  }
 
@@ -222,7 +243,31 @@
         
     }
 }
+.alert{
+    position: absolute;
+    margin-bottom: 45%;
+    bottom: 0;
+    display:flex;
+    width: 90%;
+    max-height: 15vh;
+    align-items: center;
 
+    &--img{
+        width: 40px !important;
+        transition: 0.2s;
+        margin:5px;
+    }
+    &--text{
+    color: white;
+    background:rgb(248, 73, 114);
+    box-shadow:0 0 5px red, 0 0 10px red, 0 0 5px red inset, 0 0 10px red inset;
+    padding: 15px 10px;
+    // font-weight: bold;
+    border-radius:20px;
+    transition: 0.2s;
+    margin-right:10%;
+    }
+}
 .btn-submit{
     background-color:rgb(38,200,220);
     border: none;
