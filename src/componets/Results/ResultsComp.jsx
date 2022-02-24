@@ -20,7 +20,7 @@ function Results({ data, dismissQrReader }) {
 
   const getProducts = () => {
     try {
-      axios(`http://localhost:5000/api/products/${data}`).then((res) => {
+      axios(`${API}products/${data}`).then((res) => {
         setMatch(1);
         setProductFound(res.data);
       });
