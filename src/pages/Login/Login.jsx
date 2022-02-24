@@ -15,12 +15,9 @@ export default function Login() {
 
   const onSubmit = (formData) => {
     API.post('/users/login', formData).then((res) => {
-      console.log('he entrado');
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.user));
       setUser(res.data.user);
-      console.log(res.data.user);
-      console.log(res);
       setJwt(true);
       navigate("/Home");
     });

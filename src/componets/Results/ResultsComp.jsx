@@ -63,7 +63,7 @@ function Results({ data, dismissQrReader }) {
       
       {match === 0 ? (
         <div className="result-container">
-          <h2 className="result-container__title">Aqui tienes el resultado</h2>
+          <h2 className="result-container__title">Aquí tienes el resultado</h2>
           <p className="result-container__text">
             Lo sentimos, no hay datos suficientes para poder valorar este
             producto.
@@ -83,7 +83,7 @@ function Results({ data, dismissQrReader }) {
         </div>
       ) : healthy === 0 ? (
         <div className="result-container">
-          <h3 className="result-container__title">Aqui tienes el resultado</h3>
+          <h3 className="result-container__title">Aquí tienes el resultado</h3>
           <p className="result-container__text">
             Este producto es apto para ti.
           </p>
@@ -110,7 +110,7 @@ function Results({ data, dismissQrReader }) {
         </div>
       ) : (
         <div className="result-container">
-          <h2 className="result-container__title">Aqui tienes el resultado</h2>
+          <h2 className="result-container__title">Aquí tienes el resultado</h2>
           <p className="result-container__text">
             Este producto <span>NO</span> es apto para ti.
           </p>

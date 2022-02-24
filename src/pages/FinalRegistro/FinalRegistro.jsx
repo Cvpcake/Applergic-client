@@ -23,7 +23,7 @@ const FinalRegistro = () => {
                 producto.
             </h2>
             <div className="DIVbottomESCAm">
-            <Link className="Link1562" to="/Home/Escanear">Escanea un producto</Link>
+            <Link className="Link1562" to="/Login">Logueate para escanear</Link>
             </div>
         </div>
       </div>
