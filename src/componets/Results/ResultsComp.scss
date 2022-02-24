@@ -9,22 +9,38 @@
     &__imgContainer {
         width: 60vw;
         text-align: center;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    &__checkImg {
+        object-fit: contain;
+        position: absolute;
+        background-color: #fb92aa;
+        padding: 10px;
+        width: 40px;
+        border-radius: 50%;
+        margin-left: -4vw;
     }
     &__imgGreen {
         border-radius: 20px;
         border: 10px solid #83d8ad;
-        width: 150px;
-    }
+        width: 80%;    }
     &__imgPink {
         border-radius: 20px;
         border: 10px solid #fb92aa;
-        width: 150px;
+        width: 70%;
+        margin-left:2.5vw;
+        padding: 10px;
+       
     }
     &__img {
         border-radius: 20px;
         border: 10px solid #fbd292;
-        width: 150px;
-    }
+        width: 80%;
+        }
+        
     &__text {
         width: 80vw;
         padding: 10px;
