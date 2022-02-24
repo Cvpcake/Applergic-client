@@ -104,6 +104,7 @@ function Results({ data, dismissQrReader }) {
             Este producto <span>NO</span> es apto para ti.
           </p>
           <div className="result-container__imgContainer">
+            <img className="result-container__checkImg" src="../images/checkX.png" alt="Check"/>
             <img
               className="result-container__imgPink"
               src={productFound.image}
