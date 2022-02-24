@@ -161,17 +161,23 @@
     height: 300px;
     border:1px solid #888686;
     margin: 20px 0px;
-    &__single{
+    &__single--grey, &__single--red{
         text-decoration: none;
         width:30px;
         color:white;
         border-radius: 50%;
-        background-color: #888686;
         padding: 6px 0;
         margin:6%;
         scroll-behavior: disable;
     }
+    &__single--grey{
+        background-color: #888686;
+    }
+    &__single--red{
+        background-color: rgb(248,73,113);
+    }
  }
+
 
  .arrowTop,.arrowBot{
     color: #888686;
