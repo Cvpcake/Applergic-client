@@ -20,7 +20,7 @@ function Results({ data, dismissQrReader }) {
 
   const getProducts = () => {
     try {
-      axios(`${API}products/${data}`).then((res) => {
+      axios(`https://applergic-api.vercel.app/api/products/${data}`).then((res) => {
         setMatch(1);
         setProductFound(res.data);
       });
