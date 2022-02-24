@@ -7,6 +7,7 @@ import { Pagination, Navigation, Scrollbar } from "swiper";
 import { useNavigate,Link } from 'react-router-dom';
 
 import {SlideNextButton, SlidePrevButton,} from "../SlideNextButton/SlideNextButton";
+import { useEffect } from "react";
 
 export default function RegisterPage() {
  
@@ -47,18 +48,6 @@ export default function RegisterPage() {
 
 
   let navigate = useNavigate();
- 
-      //FUNCTION SETEADORA DE OBJETIVOS/VALOR
-  // handleInputChange(event) {
-  //   const target = event.target;
-  //   const value = target.type === 'checkbox' ? target.checked : target.value;
-  //   const name = target.name;
-
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // }
-
 
           //-------FUNCTION CHECK ALLERGENS PRINT SELECT---------
    const handleCheckChildElement = (event) => {
@@ -80,16 +69,61 @@ export default function RegisterPage() {
     }
   } 
 
-         //--------FUNCTION SUBMIT FORM--------
-         const onSubmit = (formData) => {
-          console.log(formData.allergens);
-          API.post("users/", formData).then((res) => {
+
+    //--------FUNCTION ALL EMAILS--------
+  useEffect(()=>{
+    emailsUsers();
+  },[])
+
+    const emailsUsers = () =>{
+      API.get("users/allUsers").then((res) => {
+        console.log(res.data);
+        setEmails(res.data)
+      });
+    }
+    
+    const [repeat, setRepeat] = useState();
+    const [data, setData] = useState()
+
+    //--------FUNCTION SUBMIT FORM--------
+    useEffect(()=>{
+      console.log('soy useEffect marico')
+      if(repeat === false){
+        console.log('soy if submit mamaguevo')
+
+      submitRegister(data);
+        }
+    },[repeat,data])
+
+    const submitRegister = (formdata) =>{
+            API.post("users/", formdata).then((res) => {
             console.log("Register user");
-            console.log(formData);
+            console.log(formdata);
             navigate("/Home/FinalRegistro")
           });
+    }
+
+         //--------SET USER SUBMIT REPEAT--------
+         
+         const [emails, setEmails] = useState([]);
+         
+         const onSubmit = async (formData) => {
+          setData(formData)
+          console.log(formData);
+          console.log(emails);
+          console.log(formData.email);
+
+             if(emails.includes(formData.email)){
+                console.log('Usuario ya existe')
+                setRepeat(true)
+             }else{
+               console.log('me e cambiado a false')
+                setRepeat(false)
+             }
         };
 
+
+        
   return (
     <form className="formRegister" onSubmit={handleSubmit(onSubmit)}>
       
@@ -106,7 +140,7 @@ export default function RegisterPage() {
       >
             {/* ------------------ PAGE FORM DATA USER ----------------------*/}
 
-        <SwiperSlide>
+        <SwiperSlide className="Page1">
         <div className="head" id="page1">
           <Link className="head--back" to="/Login">◄ Volver</Link><p className="head--p">1 de 4</p>
           </div>
@@ -125,7 +159,7 @@ export default function RegisterPage() {
               message: "Introduce un nombre"}
             })}
           />
-          {errors.name && <span>{errors.name.message}</span>}
+          {errors.name && <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><span className="divMessg--text">{errors.name.message}</span></div>}
 
           <label htmlFor="email"></label>
           <input className="EmerContact"
@@ -142,7 +176,8 @@ export default function RegisterPage() {
               }
             })}
           />  
-            {errors.email && <span>{errors.email.message}</span>}
+            {errors.email && <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><span className="divMessg--text">{errors.email.message}</span></div>}
+          
           <label htmlFor="phone"></label>
           <input className="EmerContact"
             id="phone"
@@ -154,7 +189,7 @@ export default function RegisterPage() {
             })}
           />
 
-            {errors.phone && <span>{errors.phone.message}</span>}
+            {errors.phone && <span className="alertMessag">{errors.phone.message}</span>}
           <label htmlFor="password"></label>
           <input className="EmerContact"
             name="password"
@@ -180,7 +215,7 @@ export default function RegisterPage() {
               },
               })}
           />
-          {errors.password && <span>{errors.password.message}</span>}
+          {errors.password && <div className="divMessgPass"><img className="divMessgPass--img" src="./images/alerticon.png" alt="alerta"/><span className="divMessgPass--text">{errors.password.message}</span></div>}
           </div>
           <SlideNextButton props="Guardar perfil" className1="saveAllerAncor" className="saveAllergens" isdisabled={false} />
         </SwiperSlide>
@@ -209,9 +244,12 @@ export default function RegisterPage() {
             id="emailContact"
             defaultValue="jorge@delasnieves.com"
             {...register("emailContact", {
-              pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-            })}
+              pattern:{
+                value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                message: "El formato de e-mail no es correcto"
+            }})}
           />
+          {errors.emailContact && <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><span className="divMessg--text">{errors.emailContact.message}</span></div>}
 
           <label htmlFor="emergencyContact"></label>
           <input className="EmerContact" placeholder="Móvil"
@@ -506,7 +544,7 @@ export default function RegisterPage() {
 
         <SwiperSlide className="slideFinal" id="startSe">
         <div className="head">
-          <SlidePrevButton className="head--back" props="◄ Volver"/>
+           <SlidePrevButton className="head--back" props="◄ Volver" /> {/* setrepeat={setRepeat("")} */}
           </div>
           <div className="cont-text4">
             <h2 className="cont-text4--h3">Confirma tu seleccion.</h2>
@@ -524,11 +562,12 @@ export default function RegisterPage() {
             <SlidePrevButton className="conf-aller--addNew" props="Añadir nuevos" />
             
           </div>
-          {errors.name ? <span className="alertConfirm"> Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</span> : 
-          errors.email ? <span className="alertConfirm"> Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</span> : 
-          errors.phone ? <span className="alertConfirm"> Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</span> : 
-          errors.password ? <span className="alertConfirm"> Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</span> : 
+          {errors.name ? <div className="alert"><img className="alert--img" src="./images/alerticon.png" alt="alerta"/><p className="alert--text">Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</p></div> : 
+          errors.email ? <div className="alert"><img className="alert--img" src="./images/alerticon.png" alt="alerta"/><p className="alert--text">Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</p></div> : 
+          errors.phone ? <div className="alert"><img className="alert--img" src="./images/alerticon.png" alt="alerta"/><p className="alert--text">Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</p></div> : 
+          errors.password ? <div className="alert"><img className="alert--img" src="./images/alerticon.png" alt="alerta"/><p className="alert--text">Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</p></div> : 
           null}
+          {repeat === true ? <div className="alert"><img className="alert--img" src="./images/alerticon.png" alt="alerta"/><p className="alert--text">Tú usuario ya existe, puedes utilizar un nuevo email para crear un usuario nuevo o volver al espacio de <Link to="/Login">iniciar sesión</Link></p></div> : null }
           <button className="btn-submit" type="submit" >CONFIRMAR</button>
         </SwiperSlide>
         
