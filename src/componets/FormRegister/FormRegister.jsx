@@ -7,6 +7,7 @@ import { Pagination, Navigation, Scrollbar } from "swiper";
 import { useNavigate,Link } from 'react-router-dom';
 
 import {SlideNextButton, SlidePrevButton,} from "../SlideNextButton/SlideNextButton";
+import { useEffect } from "react";
 
 export default function RegisterPage() {
  
@@ -47,18 +48,6 @@ export default function RegisterPage() {
 
 
   let navigate = useNavigate();
- 
-      //FUNCTION SETEADORA DE OBJETIVOS/VALOR
-  // handleInputChange(event) {
-  //   const target = event.target;
-  //   const value = target.type === 'checkbox' ? target.checked : target.value;
-  //   const name = target.name;
-
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // }
-
 
           //-------FUNCTION CHECK ALLERGENS PRINT SELECT---------
    const handleCheckChildElement = (event) => {
@@ -80,16 +69,61 @@ export default function RegisterPage() {
     }
   } 
 
-         //--------FUNCTION SUBMIT FORM--------
-         const onSubmit = (formData) => {
-          console.log(formData.allergens);
-          API.post("users/", formData).then((res) => {
+
+    //--------FUNCTION ALL EMAILS--------
+  useEffect(()=>{
+    emailsUsers();
+  },[])
+
+    const emailsUsers = () =>{
+      API.get("users/allUsers").then((res) => {
+        console.log(res.data);
+        setEmails(res.data)
+      });
+    }
+    
+    const [repeat, setRepeat] = useState();
+    const [data, setData] = useState()
+
+    //--------FUNCTION SUBMIT FORM--------
+    useEffect(()=>{
+      console.log('soy useEffect marico')
+      if(repeat === false){
+        console.log('soy if submit mamaguevo')
+
+      submitRegister(data);
+        }
+    },[repeat,data])
+
+    const submitRegister = (formdata) =>{
+            API.post("users/", formdata).then((res) => {
             console.log("Register user");
-            console.log(formData);
+            console.log(formdata);
             navigate("/Home/FinalRegistro")
           });
+    }
+
+         //--------SET USER SUBMIT REPEAT--------
+         
+         const [emails, setEmails] = useState([]);
+         
+         const onSubmit = async (formData) => {
+          setData(formData)
+          console.log(formData);
+          console.log(emails);
+          console.log(formData.email);
+
+             if(emails.includes(formData.email)){
+                console.log('Usuario ya existe')
+                setRepeat(true)
+             }else{
+               console.log('me e cambiado a false')
+                setRepeat(false)
+             }
         };
 
+
+        
   return (
     <form className="formRegister" onSubmit={handleSubmit(onSubmit)}>
       
@@ -106,12 +140,12 @@ export default function RegisterPage() {
       >
             {/* ------------------ PAGE FORM DATA USER ----------------------*/}
 
-        <SwiperSlide>
+        <SwiperSlide className="Page1">
         <div className="head" id="page1">
           <Link className="head--back" to="/Login">◄ Volver</Link><p className="head--p">1 de 4</p>
           </div>
           <div className="cont-text3">
-            <h2 className="cont-text3--h3">Dinos quien eres.</h2>
+            <h2 className="cont-text3--h3">Dinos quién eres.</h2>
           </div>
         <div className="contInputEmer">
           <label htmlFor="name"></label>
@@ -125,7 +159,7 @@ export default function RegisterPage() {
               message: "Introduce un nombre"}
             })}
           />
-          {errors.name && <span>{errors.name.message}</span>}
+          {errors.name && <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><span className="divMessg--text">{errors.name.message}</span></div>}
 
           <label htmlFor="email"></label>
           <input className="EmerContact"
@@ -142,7 +176,8 @@ export default function RegisterPage() {
               }
             })}
           />  
-            {errors.email && <span>{errors.email.message}</span>}
+            {errors.email && <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><span className="divMessg--text">{errors.email.message}</span></div>}
+          
           <label htmlFor="phone"></label>
           <input className="EmerContact"
             id="phone"
@@ -154,7 +189,7 @@ export default function RegisterPage() {
             })}
           />
 
-            {errors.phone && <span>{errors.phone.message}</span>}
+            {errors.phone && <span className="alertMessag">{errors.phone.message}</span>}
           <label htmlFor="password"></label>
           <input className="EmerContact"
             name="password"
@@ -180,7 +215,7 @@ export default function RegisterPage() {
               },
               })}
           />
-          {errors.password && <span>{errors.password.message}</span>}
+          {errors.password && <div className="divMessgPass"><img className="divMessgPass--img" src="./images/alerticon.png" alt="alerta"/><span className="divMessgPass--text">{errors.password.message}</span></div>}
           </div>
           <SlideNextButton props="Guardar perfil" className1="saveAllerAncor" className="saveAllergens" isdisabled={false} />
         </SwiperSlide>
@@ -209,9 +244,12 @@ export default function RegisterPage() {
             id="emailContact"
             defaultValue="jorge@delasnieves.com"
             {...register("emailContact", {
-              pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-            })}
+              pattern:{
+                value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                message: "El formato de e-mail no es correcto"
+            }})}
           />
+          {errors.emailContact && <div className="divMessg"><img className="divMessg--img" src="./images/alerticon.png" alt="alerta"/><span className="divMessg--text">{errors.emailContact.message}</span></div>}
 
           <label htmlFor="emergencyContact"></label>
           <input className="EmerContact" placeholder="Móvil"
@@ -240,31 +278,32 @@ export default function RegisterPage() {
           </div>
           <div className="cont-text3">
             <h2 className="cont-text3--h3">Ahora selecciona tus alergias e intolerancias.</h2>
-            <p className="cont-text3--p">Los elementos marcados serán identificados en tus busquedas como peligrosos para ti</p>
+            <p className="cont-text3--p">Los elementos marcados serán identificados en tus búsquedas como peligrosos para ti</p>
           </div>
           
             <div className="allLetters">
-              <a className="allLetters__single" onClick={() => setChangeA('A')} href="#a" >A</a>
-              <a className="allLetters__single" onClick={() => setChangeC('C')} href="#c" >C</a>
-              <a className="allLetters__single" onClick={() => setChangeF('F')} href="#f" >F</a>
-              <a className="allLetters__single" onClick={() => setChangeG('G')} href="#g" >G</a>
-              <a className="allLetters__single" onClick={() => setChangeH('H')} href="#h" >H</a>
-              <a className="allLetters__single" onClick={() => setChangeK('K')} href="#k" >K</a>
-              <a className="allLetters__single" onClick={() => setChangeL('L')} href="#l" >L</a>
-              <a className="allLetters__single" onClick={() => setChangeM('M')} href="#m" >M</a>
-              <a className="allLetters__single" onClick={() => setChangeN('N')} href="#n" >N</a>
-              <a className="allLetters__single" onClick={() => setChangeP('P')} href="#p" >P</a>
-              <a className="allLetters__single" onClick={() => setChangeR('R')} href="#r" >R</a>
-              <a className="allLetters__single" onClick={() => setChangeS('S')} href="#s" >S</a>
-              <a className="allLetters__single" onClick={() => setChangeT('T')} href="#t" >T</a>
-              <a className="allLetters__single" onClick={() => setChangeU('U')} href="#u" >U</a>
-              <a className="allLetters__single" onClick={() => setChangeV('V')} href="#v" >V</a>
-              <a className="allLetters__single" onClick={() => setChangeY('Y')} href="#y" >Y</a>
+              <a className={(changeA === 'A') ? "allLetters__single--red" : "allLetters__single--grey"} onClick={() => setChangeA('A')} href="#a" >A</a>
+              <a className={(changeC === 'C') ? "allLetters__single--red" : "allLetters__single--grey"} onClick={() => setChangeC('C')} href="#c" >C</a>
+              <a className={(changeF === 'F') ? "allLetters__single--red" : "allLetters__single--grey"} onClick={() => setChangeF('F')} href="#f" >F</a>
+              <a className={(changeG === 'G') ? "allLetters__single--red" : "allLetters__single--grey"} onClick={() => setChangeG('G')} href="#g" >G</a>
+              <a className={(changeH === 'H') ? "allLetters__single--red" : "allLetters__single--grey"} onClick={() => setChangeH('H')} href="#h" >H</a>
+              <a className={(changeK === 'K') ? "allLetters__single--red" : "allLetters__single--grey"} onClick={() => setChangeK('K')} href="#k" >K</a>
+              <a className={(changeL === 'L') ? "allLetters__single--red" : "allLetters__single--grey"} onClick={() => setChangeL('L')} href="#l" >L</a>
+              <a className={(changeM === 'M') ? "allLetters__single--red" : "allLetters__single--grey"} onClick={() => setChangeM('M')} href="#m" >M</a>
+              <a className={(changeN === 'N') ? "allLetters__single--red" : "allLetters__single--grey"} onClick={() => setChangeN('N')} href="#n" >N</a>
+              <a className={(changeP === 'P') ? "allLetters__single--red" : "allLetters__single--grey"} onClick={() => setChangeP('P')} href="#p" >P</a>
+              <a className={(changeR === 'R') ? "allLetters__single--red" : "allLetters__single--grey"} onClick={() => setChangeR('R')} href="#r" >R</a>
+              <a className={(changeS === 'S') ? "allLetters__single--red" : "allLetters__single--grey"} onClick={() => setChangeS('S')} href="#s" >S</a>
+              <a className={(changeT === 'T') ? "allLetters__single--red" : "allLetters__single--grey"} onClick={() => setChangeT('T')} href="#t" >T</a>
+              <a className={(changeU === 'U') ? "allLetters__single--red" : "allLetters__single--grey"} onClick={() => setChangeU('U')} href="#u" >U</a>
+              <a className={(changeV === 'V') ? "allLetters__single--red" : "allLetters__single--grey"} onClick={() => setChangeV('V')} href="#v" >V</a>
+              <a className={(changeY === 'Y') ? "allLetters__single--red" : "allLetters__single--grey"} onClick={() => setChangeY('Y')} href="#y" >Y</a>
             </div>
 
         <div className="cont-select" id="a" >
           <div className="cont-select--deployed">
-            <p className="allLetters__single" id="classA" >A</p>   {changeA === 'A' ? <p className="arrowTop" onClick={() => setChangeA('Ac')}>▲</p> : <p className="arrowBot" onClick={() => setChangeA('A')}>▼</p>}
+            <p className={(changeA === 'A') ? "allLetters__single--red" : "allLetters__single--grey"} id="classA" >A</p>
+            {changeA === 'A' ? <p className="arrowTop" onClick={() => setChangeA('Ac')}>▲</p> : <p className="arrowBot" onClick={() => setChangeA('A')}>▼</p>}
           </div>
           {changeA === 'A'? <div className="cont-select--Allergens">
               {letterA.map((letA,index) => 
@@ -279,7 +318,8 @@ export default function RegisterPage() {
         
         <div className="cont-select" id="c" >
           <div className="cont-select--deployed">
-            <p className="allLetters__single">C</p>{changeC === 'C' ? <p className="arrowTop" onClick={() => setChangeC('Cc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeC('C')}>▼</p>}
+            <p className={(changeC === 'C') ? "allLetters__single--red" : "allLetters__single--grey"}>C</p>
+            {changeC === 'C' ? <p className="arrowTop" onClick={() => setChangeC('Cc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeC('C')}>▼</p>}
           </div>
           {changeC === 'C' ?  <div className="cont-select--Allergens">
               {letterC.map((letC,index) => 
@@ -294,7 +334,8 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="f" >
           <div className="cont-select--deployed">
-            <p className="allLetters__single">F</p>{changeF === 'F' ? <p className="arrowTop" onClick={() => setChangeF('Fc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeF('F')}>▼</p>}
+            <p className={(changeF === 'F') ? "allLetters__single--red" : "allLetters__single--grey"}>F</p>
+            {changeF === 'F' ? <p className="arrowTop" onClick={() => setChangeF('Fc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeF('F')}>▼</p>}
           </div>
           {changeF === 'F' ? <div className="cont-select--Allergens">
               {letterF.map((letF,index) => 
@@ -310,7 +351,8 @@ export default function RegisterPage() {
       
         <div className="cont-select" id="g" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">G</p>{changeG === 'G' ? <p className="arrowTop" onClick={() => setChangeG('Gc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeG('G')}>▼</p>}
+              <p className={(changeG === 'G') ? "allLetters__single--red" : "allLetters__single--grey"}>G</p>
+              {changeG === 'G' ? <p className="arrowTop" onClick={() => setChangeG('Gc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeG('G')}>▼</p>}
             </div>
             {changeG === 'G' ? <div className="cont-select--Allergens">
               {letterG.map((letG,index) => 
@@ -325,7 +367,8 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="h" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">H</p>{changeH === 'H' ? <p className="arrowTop" onClick={() => setChangeH('Hc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeH('H')}>▼</p>}
+              <p className={(changeH === 'H') ? "allLetters__single--red" : "allLetters__single--grey"}>H</p>
+              {changeH === 'H' ? <p className="arrowTop" onClick={() => setChangeH('Hc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeH('H')}>▼</p>}
             </div>
             {changeH === 'H' ? <div className="cont-select--Allergens"> 
               <div id="ck-button">
@@ -339,7 +382,8 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="k" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">K</p>{changeK === 'K' ? <p className="arrowTop" onClick={() => setChangeK('Kc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeK('K')}>▼</p>}
+              <p className={(changeK === 'K') ? "allLetters__single--red" : "allLetters__single--grey"}>K</p>
+              {changeK === 'K' ? <p className="arrowTop" onClick={() => setChangeK('Kc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeK('K')}>▼</p>}
             </div>
             {changeK === 'K' ? <div className="cont-select--Allergens"> 
               <div id="ck-button">
@@ -353,7 +397,8 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="l" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">L</p>{changeL === 'L' ? <p className="arrowTop" onClick={() => setChangeL('Lc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeL('L')}>▼</p>}
+              <p className={(changeL === 'L') ? "allLetters__single--red" : "allLetters__single--grey"}>L</p>
+              {changeL === 'L' ? <p className="arrowTop" onClick={() => setChangeL('Lc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeL('L')}>▼</p>}
             </div>
             {changeL === 'L' ? <div className="cont-select--Allergens"> 
                 {letterL.map((letL,index) => 
@@ -368,7 +413,8 @@ export default function RegisterPage() {
           
         <div className="cont-select" id="m" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">M</p>{changeM === 'M' ? <p className="arrowTop" onClick={() => setChangeM('Mc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeM('M')}>▼</p>}
+              <p className={(changeM === 'M') ? "allLetters__single--red" : "allLetters__single--grey"}>M</p>
+              {changeM === 'M' ? <p className="arrowTop" onClick={() => setChangeM('Mc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeM('M')}>▼</p>}
             </div>
             {changeM === 'M' ? <div className="cont-select--Allergens"> 
                 {letterM.map((letM,index) => 
@@ -384,7 +430,8 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="n" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">N</p>{changeN === 'N' ? <p className="arrowTop" onClick={() => setChangeN('Nc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeN('N')}>▼</p>}
+              <p className={(changeN === 'N') ? "allLetters__single--red" : "allLetters__single--grey"}>N</p>
+              {changeN === 'N' ? <p className="arrowTop" onClick={() => setChangeN('Nc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeN('N')}>▼</p>}
             </div>
             {changeN === 'N' ? <div className="cont-select--Allergens">
               <div id="ck-button">
@@ -398,7 +445,8 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="p" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">P</p>{changeP === 'P' ? <p className="arrowTop" onClick={() => setChangeP('Pc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeP('P')}>▼</p>}
+              <p className={(changeP === 'P') ? "allLetters__single--red" : "allLetters__single--grey"}>P</p>
+              {changeP === 'P' ? <p className="arrowTop" onClick={() => setChangeP('Pc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeP('P')}>▼</p>}
             </div>
             {changeP === 'P' ? <div className="cont-select--Allergens">
             {letterP.map((letP,index) => 
@@ -413,7 +461,8 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="r" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">R</p>{changeR === 'R' ? <p className="arrowTop" onClick={() => setChangeR('Rc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeR('R')}>▼</p>}
+              <p className={(changeR === 'R') ? "allLetters__single--red" : "allLetters__single--grey"}>R</p>
+              {changeR === 'R' ? <p className="arrowTop" onClick={() => setChangeR('Rc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeR('R')}>▼</p>}
             </div>
             {changeR === 'R' ? <div className="cont-select--Allergens">
               <div id="ck-button">
@@ -427,7 +476,8 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="s" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">S</p>{changeS === 'S' ? <p className="arrowTop" onClick={() => setChangeS('Sc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeS('S')}>▼</p>}
+              <p className={(changeS === 'S') ? "allLetters__single--red" : "allLetters__single--grey"}>S</p>
+              {changeS === 'S' ? <p className="arrowTop" onClick={() => setChangeS('Sc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeS('S')}>▼</p>}
             </div>
             {changeS === 'S' ? <div className="cont-select--Allergens">
             {letterS.map((letS,index) => 
@@ -442,7 +492,8 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="t" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">T</p>{changeT === 'T' ? <p className="arrowTop" onClick={() => setChangeT('Tc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeT('T')}>▼</p>}
+              <p className={(changeT === 'T') ? "allLetters__single--red" : "allLetters__single--grey"}>T</p>
+              {changeT === 'T' ? <p className="arrowTop" onClick={() => setChangeT('Tc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeT('T')}>▼</p>}
             </div>
             {changeT === 'T' ? <div className="cont-select--Allergens">
             {letterT.map((letT,index) => 
@@ -457,7 +508,8 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="u" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">U</p>{changeU === 'U' ? <p className="arrowTop" onClick={() => setChangeU('Uc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeU('U')}>▼</p>}
+              <p className={(changeU === 'U') ? "allLetters__single--red" : "allLetters__single--grey"}>U</p>
+              {changeU === 'U' ? <p className="arrowTop" onClick={() => setChangeU('Uc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeU('U')}>▼</p>}
             </div>
             {changeU === 'U' ? <div className="cont-select--Allergens">
               <div id="ck-button">
@@ -471,7 +523,8 @@ export default function RegisterPage() {
 
         <div className="cont-select" id="v" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">V</p>{changeV === 'V' ? <p className="arrowTop" onClick={() => setChangeV('Vc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeV('V')}>▼</p>}
+              <p className={(changeV === 'V') ? "allLetters__single--red" : "allLetters__single--grey"}>V</p>
+              {changeV === 'V' ? <p className="arrowTop" onClick={() => setChangeV('Vc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeV('V')}>▼</p>}
             </div>
             {changeV === 'V' ? <div className="cont-select--Allergens">
             {letterV.map((letV,index) => 
@@ -486,7 +539,7 @@ export default function RegisterPage() {
     
         <div className="cont-select" id="y" >
             <div className="cont-select--deployed">
-              <p className="allLetters__single">U</p>
+              <p className={(changeY === 'Y') ? "allLetters__single--red" : "allLetters__single--grey"}>Y</p>
               {changeY === 'Y' ? <p className="arrowTop" onClick={() => setChangeY('Yc')}>▲</p> : <p className="arrowBot" onClick={() => setChangeY('Y')}>▼</p>}
             </div>
             {changeY === 'Y' ? <div className="cont-select--Allergens">
@@ -506,14 +559,14 @@ export default function RegisterPage() {
 
         <SwiperSlide className="slideFinal" id="startSe">
         <div className="head">
-          <SlidePrevButton className="head--back" props="◄ Volver"/>
+           <SlidePrevButton className="head--back" props="◄ Volver" /> {/* setrepeat={setRepeat("")} */}
           </div>
           <div className="cont-text4">
-            <h2 className="cont-text4--h3">Confirma tu seleccion.</h2>
+            <h2 className="cont-text4--h3">Confirma tu selección.</h2>
             <p className="cont-text4--p">A continuación te resumimos los alimentos registrados como peligrosos para ti</p>
           </div>
           <div className="conf-aller" >
-            <p className="conf-aller--p">Si quieres modificar tu selección o añadir más alergenos pulsa en añadir nuevos</p>
+            <p className="conf-aller--p">Si quieres modificar tu selección o añadir más alérgenos pulsa en añadir nuevos</p>
             <ul className="conf-aller--result">
             {interruptor ? 
               userAllergies.map((allergie, index ) => {return <li className="conf-aller--select" key={index}>{allergie}</li>}) 
@@ -524,11 +577,12 @@ export default function RegisterPage() {
             <SlidePrevButton className="conf-aller--addNew" props="Añadir nuevos" />
             
           </div>
-          {errors.name ? <span className="alertConfirm"> Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</span> : 
-          errors.email ? <span className="alertConfirm"> Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</span> : 
-          errors.phone ? <span className="alertConfirm"> Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</span> : 
-          errors.password ? <span className="alertConfirm"> Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</span> : 
+          {errors.name ? <div className="alert"><img className="alert--img" src="./images/alerticon.png" alt="alerta"/><p className="alert--text">Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</p></div> : 
+          errors.email ? <div className="alert"><img className="alert--img" src="./images/alerticon.png" alt="alerta"/><p className="alert--text">Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</p></div> : 
+          errors.phone ? <div className="alert"><img className="alert--img" src="./images/alerticon.png" alt="alerta"/><p className="alert--text">Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</p></div> : 
+          errors.password ? <div className="alert"><img className="alert--img" src="./images/alerticon.png" alt="alerta"/><p className="alert--text">Se ha encontrado un error en el apartado "Dinos quien eres", vuelve a la página 1</p></div> : 
           null}
+          {repeat === true ? <div className="alert"><img className="alert--img" src="./images/alerticon.png" alt="alerta"/><p className="alert--text">Tu usuario ya existe, puedes utilizar un nuevo email para crear un usuario nuevo o volver al espacio de <Link to="/Login">iniciar sesión</Link></p></div> : null }
           <button className="btn-submit" type="submit" >CONFIRMAR</button>
         </SwiperSlide>
         
